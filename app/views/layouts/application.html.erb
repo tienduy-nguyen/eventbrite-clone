@@ -20,7 +20,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-2" id="main-nav">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="<%= root_path %>">
         <img href=<%= asset_path('logo.png')%>>
       </a>
@@ -39,14 +39,14 @@
 
         </ul>
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item <%= active_class(login_path) %>">
-            <a href="#" class="nav-link">Browse Events</a>>
+          <li class="nav-item <%= active_class(root_path) %>">
+            <a href="#" class="nav-link">Browse Events</a>
           </li>
-          <li class="nav-item <%= active_class(login_path) %>">
-            <a href="#" class="nav-link"><i class="fas fa-plus"></i> Create Events</a>>
+          <li class="nav-item <%= active_class(root_path) %>">
+            <a href="#" class="nav-link"><i class="fas fa-plus"></i> Create Events</a>
           </li>
-          <li class="nav-item <%= active_class(login_path) %>">
-            <a href="#" class="nav-link">Browse Events</a>>
+          <li class="nav-item <%= active_class(root_path) %>">
+            <a href="#" class="nav-link">Browse Events</a>
           </li>
 
 
