@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: eventbrite_dev
+  host: localhost
+  username: postgres
+  password: postgres
+
+test:
+  <<: *default
+  database: eventbrite_test
+  host: localhost
+  username: postgres
+  password: postgres
+
+#
+production:
+  <<: *default
+  database: eventbrite_production
+  username: postgres
+  password: postgres
