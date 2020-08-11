@@ -1,0 +1,12 @@
+ <div class="tab-pane fade show active" 
+ id="food_drink_events" role="tabpanel" aria-labelledby="food_drink_events-tab">
+ 
+ <% if @food_drink_events.nil? %>
+    <div class="mt-4">
+      No events to show here
+    </div>
+  <% else %>
+  <%= render partial: 'card_event', locals: {events: @food_drink_events} %>
+ <% end %>
+ 
+ </div>

@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   
   def index
-    @events = Event.where('start_date >= ?', Time.zone.now)
-    @all_events = !@events.nil? && @events.count > 30 ? @events.take(30) :  @events
+    events = Event.where('start_date >= ?', Time.zone.now)
+    @all_events = !events.nil? && events.count > 30 ? events.take(30) :  events
     @today_events = Event.where(start_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
     weekend_start = Date.today.end_of_week - 1
     weekend_end   = Date.today.end_of_week

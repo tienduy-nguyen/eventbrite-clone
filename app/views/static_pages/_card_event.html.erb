@@ -1,0 +1,23 @@
+
+<div class="container-fluid">
+  <div class="row my-5">
+    <% events.each_with_index do |event, index|%>
+        <div class="col-lg-3 col-md-4 col-sm-12 my-3">
+            <div class="card">
+                <a href="#">
+                  <img class="card-img-top" 
+                  src="https://source.unsplash.com/random?<%= index%>" 
+                  alt="Bologna">
+                </a>
+                <div class="card-body">
+                  <h6 class="card-subtitle mb-2" style="color: #EF5537 "><%= get_time_verbose(event.start_date) %></h6>
+                  <h4 class="card-title"><%= truncate(event.title, :length => 50) %></h4>
+                </div>
+            </div>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+
