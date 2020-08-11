@@ -29,15 +29,15 @@ class User < ApplicationRecord
   end
 
   def normalize_name
-    if self.first_name.nil?
+    if !self.first_name.nil?
       self.first_name = self.first_name.downcase.capitalize
     end
-    if self.last_name.nil?
+    if !self.last_name.nil?
       self.last_name = self.last_name.downcase.capitalize
     end
   end 
   def get_full_name
-    if self.first_name.nil? && self.last_name.nill?
+    if self.first_name.nil? && self.last_name.nil?
         self.full_name = self.email.split('@')[0]
     else
       self.full_name = "#{self.first_name.capitalize unless self.first_name.nil?} #{self.last_name.capitalize unless self.last_name.nil?}"

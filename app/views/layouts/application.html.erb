@@ -22,7 +22,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-2" id="main-nav">
     <div class="container-fluid">
       <a class="navbar-brand" href="<%= root_path %>">
-        <img href=<%= asset_path('logo.png')%>>
+        <img src="<%= asset_path('logo.png')%>" width="200" height="40" alt="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,6 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-4">
-
           <!-- Search form -->
           <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,32 +41,53 @@
           <li class="nav-item <%= active_class(root_path) %>">
             <a href="#" class="nav-link">Browse Events</a>
           </li>
-          <li class="nav-item <%= active_class(root_path) %>">
+          <% if !user_signed_in? %>
+            <!-- User not logged in -->
+
+            <li class="nav-item <%= active_class(root_path) %>">
+              <a href="<%= static_pages_help_path %>" class="nav-link">Help</a>
+            </li>
+
+            <li class="nav-item <%= active_class(root_path) %>">
+              <a href="<%= new_user_session_path %>" class="nav-link"><i class="fas fa-sign-in-alt"></i> Log in</a>
+            </li>
+            <li class="nav-item <%= active_class(root_path) %>">
+              <a href="<%= new_user_registration_path %>" class="nav-link"><i class="fas fa-user-plus"></i> Sign up</a>
+            </li>
+          <% else %>
+            <!-- User logged in -->
+            <li class="nav-item <%= active_class(root_path) %>">
             <a href="#" class="nav-link"><i class="fas fa-plus"></i> Create Events</a>
-          </li>
-          <li class="nav-item <%= active_class(root_path) %>">
-            <a href="#" class="nav-link">Browse Events</a>
-          </li>
+            </li>
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" h
+                  ref="#" id="navbarDropdownMenuLink" 
+                  role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <img src="<%= asset_path('felix.jpeg')%>"
+                    width="40" height="40" class="rounded-circle">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-user" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Collections</a>
+                  <a class="dropdown-item" href="#">Manage Events</a>
+                  <a class="dropdown-item" href="#">Organizer Profile</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Create Event</a>
+                  <a class="dropdown-item" href="#">Account Settings</a>
+                  <a class="dropdown-item" 
+                    href="<%= destroy_user_session_path %>" data-method="DELETE"
+                  >Log Out</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="<%= static_pages_help_path %>">Help</a>
+                </div>
+            </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
-                width="40" height="40" class="rounded-circle">
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Collections</a>
-              <a class="dropdown-item" href="#">Manage Events</a>
-              <a class="dropdown-item" href="#">Organizer Profile</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Create Event</a>
-              <a class="dropdown-item" href="#">Account Settings</a>
-              <a class="dropdown-item" href="#">Log Out</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Help</a>
-            </div>
-          </li>
+          <% end %>
+
+          
+
+        
 
 
       </div>
@@ -76,7 +96,7 @@
 
 
   <!-- Main content of body -->
-  <div class="" style="margin-top:100px; margin-bottom:60px; ">
+  <div class="" style="margin-top:90px; margin-bottom:60px; ">
 
     <section id="alert-section">
       <% flash.each do |key, value| %>
@@ -134,7 +154,7 @@
   </script>
   <script>
     $('#year').text(new Date().getFullYear());
-    $(".alert").fadeOut(3000);
+    $(".alert").fadeOut(6000);
   </script>
 
 </body>
