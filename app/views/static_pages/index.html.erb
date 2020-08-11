@@ -1,4 +1,15 @@
-<ul>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% content_for :title, "Home" %>
+</head>
+
+<body>
+
+  <!-- MAIN BODY -->
+  <section id="home-section">
+   <ul>
   <% if user_signed_in? %>
     <li>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
@@ -27,3 +38,8 @@
 
   <% end %>
 </ul>
+  </section>
+</body>
+
+</html>
+

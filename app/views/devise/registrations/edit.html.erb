@@ -3,8 +3,7 @@
     <div class='col-lg-8 col-md-10 mx-auto'>
         <h2 class="text-center">Edit <%= resource_name.to_s.humanize %></h2>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-            <%= render "devise/shared/error_messages", resource: resource %>
-
+              <%= render "devise/shared/error_messages", resource: resource %>
             <div class="form-group mb-3">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email",

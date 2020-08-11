@@ -8,3 +8,20 @@
   border-radius: 6px;
   border: 0.125px solid #f1f1f1 !important;
 }
+
+.nav-bg-light {
+  background-color: #fff;
+  .navbar-collapse {
+    background-color: #fff;
+    // border-bottom: 1px solid #f1f1f1;
+  }
+}
+.nav-bg-light {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  max-height: 80px;
+
+  .nav-item:hover {
+    background-color: #f1f1f1;
+  }
+}

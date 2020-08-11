@@ -21,8 +21,22 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_save :get_full_name
 
-  private
+  # Send email
+  after_create :welcome_send
 
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+
+  # GET users/:id/show
+  # def show
+
+  # end
+
+
+  # Private method --------------------------------------
+  private
   # Downcase email before being saved
   def downcase_email
     self.email = email.strip.downcase
@@ -47,4 +61,6 @@ class User < ApplicationRecord
   def blank_password?
     self.password = nil if self.password.blank?
   end
+
+  
 end
