@@ -1,3 +1,37 @@
-// Place all the styles related to the StaticPages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// // Intro information
+.intro-send-message {
+  background-color: #1e0a3c;
+}
+.intro-photo {
+  background: {
+    image: asset_url('event.jpeg');
+  }
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 80vh;
+
+  .intro-fight {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #ffdc23;
+    width: 35em;
+    min-height: 11em;
+    .intro-fight-title {
+      background-color: #333;
+      color: #fff;
+      padding: 2px;
+      font-weight: 700;
+      font-size: 2rem;
+      display: inline-block;
+    }
+  }
+}
+
+.event-list {
+  margin-top: 150px;
+}

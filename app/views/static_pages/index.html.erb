@@ -5,41 +5,68 @@
   <% content_for :title, "Home" %>
 </head>
 
-<body>
+<body ">
 
-  <!-- MAIN BODY -->
-  <section id="home-section">
-   <ul>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    </li>
+  <!-- Overlay section-->
+  <section id="intro-section mb-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-10 offset-lg-1 px-4">
 
-    <li>
-      Voici ton email : <%= current_user.email %>
-    </li>
+          <!-- Intro info -->
+          <div class="intro-send-message p-3 text-white mb-3">
+            <h2>Time is running out</h2>
+            <span>Join the movement to keep independent venues alive. <a
+                href="https://www.nivassoc.org/take-action">Send a message to Congress to</a> #SaveOurStages.</span>
+          </div>
+          <div class="intro-photo">
+              <div class="intro-fight p-4 text-center mx-auto">
+                  <span class="intro-fight-title px-0 mt-3">Fight for racial equality</span><br>
+                  <p class="mt-3">People are mobilizing around the country. Find the nearest protest or <a href="<%= new_event_path %>">start your own</a> now.<span>
+              </div>
+          </div>
+          <!--End intro info -->
 
-    <li>
-      <%= link_to "Secret page", static_pages_secret_path %>
-    </li>
+          <div class="event-list">
+            <h1 class="mb-2">Popular in Online Event</h1>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="all_events-tab" data-toggle="tab" href="#all_events" role="tab" aria-controls="all_events" aria-selected="true">All Events</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="today_events-tab" data-toggle="tab" href="#today_events" role="tab" aria-controls="today_events" aria-selected="false">Today</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="weekend_events-tab" data-toggle="tab" href="#weekend_events" role="tab" aria-controls="weekend_events" aria-selected="false">Weekend</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" id="free_events-tab" data-toggle="tab" href="#free_events" role="tab" aria-controls="free_events" aria-selected="false">Free</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" id="music_events-tab" data-toggle="tab" href="#music_events" role="tab" aria-controls="music_events" aria-selected="false">Music</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" id="food_drink_events-tab" data-toggle="tab" href="#food_drink_events" role="tab" aria-controls="food_drink_events" aria-selected="false">Food & Drink</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" id="charity_events-tab" data-toggle="tab" href="#charity_events" role="tab" aria-controls="charity_events" aria-selected="false">Charity</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <%= render 'all_events'%>
+              <%= render 'today_events'%>
+              <%= render 'weekend_events'%>
+              <%= render 'free_events'%>
+              <%= render 'music_events'%>
+              <%= render 'food_drink_events'%>
+              <%= render 'charity_events'%>  
+            </div>
+          </div>
 
-    <li>
-      <%= link_to "Edit email / password", edit_user_registration_path %>
-    </li>
-
-  <% else %>
-    <li>    
-      <%= link_to "Sign in", new_user_session_path %>
-    </li>
-
-    <li>
-      <%= link_to "Sign up", new_user_registration_path %>
-    </li>
-
-  <% end %>
-</ul>
+        </div>
+      </div>
+    </div>
   </section>
 </body>
 
 </html>
-

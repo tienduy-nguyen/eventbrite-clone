@@ -25,7 +25,6 @@ class Event < ApplicationRecord
   before_save :auto_end_date
   before_save :normalize_duration
 
-
   private
   # Validates the size of an uploaded picture.
   def picture_size
