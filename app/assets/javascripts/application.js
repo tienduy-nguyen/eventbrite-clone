@@ -1,6 +1,10 @@
 //----------------------------------------------//
 // Dropdown menu
 //----------------------------------------------//
+function collapseSidebar() {
+  body.classList.toggle('sidebar-expand');
+}
+
 window.onclick = function (event) {
   openCloseDropdown(event);
 };

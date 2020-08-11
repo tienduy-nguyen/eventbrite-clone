@@ -31,4 +31,9 @@ module ApplicationHelper
     end
   end
 
+  def url_contains_account_settings?
+    url = request.path_info
+    return url.include?('accountsettings')
+  end
+
 end

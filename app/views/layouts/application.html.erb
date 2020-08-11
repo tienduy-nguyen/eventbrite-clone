@@ -22,6 +22,13 @@
 
   <nav class="navbar navbar-expand-lg navbar-light nav-bg-light fixed-top py-2" id="main-nav">
     <div class="container-fluid">
+     <% if url_contains_account_settings? %>
+       <div class="sidbar-top">
+        <a class="mr-4 ml-0">
+          <i class="fas fa-bars fa-2x " onclick="collapseSidebar()"></i>
+        </a>
+      </div>
+    <% end %>
       <a class="navbar-brand mr-3" href="<%= root_path %>">
         <img src="<%= asset_path('logo.png')%>" width="200" height="40" alt="logo">
       </a>
@@ -116,21 +123,21 @@
           </div>
           <div class="navbar-nav d-flex">
               <div class='row'>
-                      <div class='col-lg-3 col-md-4 col-sm-12 d-flex mr-3'>
+  
                           <div class="mr-3"><a class="nav-link" href="#">How It Works</a></div>
                           <div class="mr-3"><a class="nav-link" href="#">Pricing</a></div>
                           <div class="mr-3"><a class="nav-link" href="#">Contact Support</a></div>
-                      </div>
-                      <div class='col-lg-3 col-md-4 col-sm-12 d-flex mr-3'>
+
+        
                           <div class="mr-3"><a class="nav-link" href="#">About</a></div>
                           <div class="mr-3"><a class="nav-link" href="#">Blog</a></div>
                           <div class="mr-3"><a class="nav-link" href="#">Help</a></div>
-                      </div>
-                      <div class='col-lg-3 col-md-4 col-sm-12 d-flex'>
+
+     
                           <div class="mr-3"><a class="nav-link" href="#">Security</a></div>
                           <div class="mr-3"><a class="nav-link" href="#">Developers</a></div>
-                          <div class="mr-3"><a class="nav-link" href="#">Team Privacy</a></div>
-                      </div>
+                          <div class="mr-3"><a class="nav-link" href="#">Term Privacy</a></div>
+            
               </div>
           
           </div>
