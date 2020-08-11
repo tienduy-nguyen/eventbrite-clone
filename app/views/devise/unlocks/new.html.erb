@@ -1,16 +1,43 @@
-<h2>Resend unlock instructions</h2>
+<!DOCTYPE html>
+<html>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<head>
+  <% content_for :title, "Unclock" %>
+</head>
+<body>
+  <!-- MAIN BODY -->
+  <section>
+     <div class="container">
+        <div class='row'>
+            <div class='col-lg-8 col-md-10 mx-auto'>
+              <h2 class="mb-4 text-center">Resend unlock instructions</h2>
+                <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                <div class="form-group mb-4">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" , 
+                        class: 'form-control rounded-pill',
+                        placeholder: 'Enter you email address here',
+                        required: true %>
+                </div>
 
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
+                <div class="actions">
+                  <%= f.submit "Resend unlock instructions" %>
+                </div>
 
-<%= render "devise/shared/links" %>
+                <div class="actions">
+                  <%= f.submit "Resend unlock instructions", 
+                  class:"btn btn-primary rounded-pill btn-block" %>
+                </div>
+              <% end %>
+
+            </div>
+        </div>
+    </div>
+  </section>
+</body>
+
+</html>
+
+
+

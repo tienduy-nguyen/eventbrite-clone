@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% content_for :title, "Account Settings" %>
+</head>
+
+<body>
+  <!-- MAIN BODY -->
+  <section>
+
+    <%= render 'sidebar'  %>
+
+    <!-- Content -->
+    <div class="contact-info wrapper">
+      <div class="row">
+
+        <div class="pull-right">Account since <%= get_time_verbose(current_user.created_at) %></div>
+        <h1>Account Information</h1>
+        <hr>
+
+        <div class="account-email mb-5">
+          <h3 class="mx-3">Account email address</h3>
+          <span><%= current_user.email %></span>
+          <div>
+            <button class="btn btn-light border-dark"></button>
+          </div>
+        </div>
+
+
+        <form>
+          <!-- Account photo -->
+          <div class="account-photo mb-5">
+            <h3>Profile Photo</h3>
+            <section class="drag-drop-phot">
+              <form action="" method="POST" enctype="multipart/form-data">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="control-label">Upload File</label>
+                        <div class="preview-zone hidden">
+                          <div class="box box-solid">
+                            <div class="box-header with-border">
+                              <div><b>Preview</b></div>
+                              <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-danger btn-xs remove-preview">
+                                  <i class="fa fa-times"></i> Reset This Form
+                                </button>
+                              </div>
+                            </div>
+                            <div class="box-body"></div>
+                          </div>
+                        </div>
+                        <div class="dropzone-wrapper">
+                          <div class="dropzone-desc">
+                            <i class="glyphicon glyphicon-download-alt"></i>
+                            <p>Choose an image file or drag it here.</p>
+                          </div>
+                          <input type="file" name="img_logo" class="dropzone">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+          <!-- End Account photo -->
+
+          <!-- Start account info -->
+          <div class="contact-info mb-5">
+            <div class="row">
+              <div class="col-lg-8">
+                <h3>Contact Information</h3>
+
+                <div class="form-group mb-3">
+                  <label>Prefix</label>
+                  <select class="form-group" id="selectSex">
+                    <option>Mr.</option>
+                    <option>Ms</option>
+                    <option>Mrs.</option>
+                  </select>
+                </div>
+
+                <div class="form-row mb-3">
+                  <div class="col">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" value="<%= current_user.first_name %>">
+                  </div>
+                  <div class="col">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" value="<%= current_user.last_name %>">
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label>Phone</label>
+                  <input type="text" class="form-control" value="<%= current_user.phone %>">
+                </div>
+
+                <div class="form-row mb-3">
+                  <div class="col">
+                    <label>Job title</label>
+                    <input type="text" class="form-control" value="<%= current_user.job %>">
+                  </div>
+                  <div class="col">
+                    <label>Company</label>
+                    <input type="text" class="form-control" value="<%= current_user.company %>">
+                  </div>
+                </div>
+
+
+                <div class="form-group mb-3">
+                  <label>website</label>
+                  <input type="text" class="form-group" value="<%= current_user.website %>">
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- End account info -->
+
+          <!-- Start address -->
+          <div class="account-address">
+            <h3 cl>Address</h3>
+            <div class="form-group mb-3">
+              <label>Address</label>
+              <input type="text" class="form-control" value="<%= current_user.address %>">
+            </div>
+            <div class="form-group mb-3">
+              <label>City</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-group mb-3">
+              <label>Country</label>
+              <input type="text" class="form-control">
+            </div>
+            <div class="form-row">
+              <div class="col">
+                <label for="">Zip/Postal Code</label>
+                <input type="text" class="form-group">
+              </div>
+              <div class="col">
+                <label for="">State</label>
+                <input type="text" class="form-group">
+              </div>
+            </div>
+
+          </div>
+          <!-- End address -->
+          <input type="submit" class="btn btn-danger">Save</input>
+        </form>
+
+      </div>
+    </div>
+    <!-- end content -->
+  </section>
+</body>
+
+</html>

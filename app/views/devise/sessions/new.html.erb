@@ -1,59 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 col-lg-8 mx-auto">
-      <h2 class="mb-4 text-center">LOG IN</h2>
+<!DOCTYPE html>
+<html>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="form-group mb-4">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" , 
-              class: 'form-control rounded-pill',
-              placeholder: 'Email',
-              required: true %>
-        </div>
+<head>
+  <% content_for :title, "Log In" %>
+</head>
+<body>
+  <!-- MAIN BODY -->
+  <section>
+     <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-lg-8 mx-auto">
+            <h2 class="mb-4 text-center">LOG IN</h2>
 
-        <div class="form-group mb-4">
-            <%= f.password_field :password, autocomplete: "new-password",
-                class:'form-control rounded-pill', 
-                placeholder: 'Password', 
-                required: true, minlength: 6 %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="form-group mb-4">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , 
+                    class: 'form-control rounded-pill',
+                    placeholder: 'Email',
+                    required: true %>
+              </div>
 
-        </div>
-        <div class="form-check ml-1 mb-4">
-          <%= f.check_box :remember_me , class: 'form-check-input'%>
-          <%= f.label :remember_me , class:"form-check-label"%>
-        </div>
+              <div class="form-group mb-4">
+                  <%= f.password_field :password, autocomplete: "new-password",
+                      class:'form-control rounded-pill', 
+                      placeholder: 'Password', 
+                      required: true, minlength: 6 %>
 
-        <div class="actions">
-          <%= f.submit "Log in", class:'btn btn-primary form-control rounded-pill btn-block mb-3' %>
-        </div>
-        <% end %>
+              </div>
+              <div class="form-check ml-1 mb-4">
+                <%= f.check_box :remember_me , class: 'form-check-input'%>
+                <%= f.label :remember_me , class:"form-check-label"%>
+              </div>
 
-        <div class='text-center mx-auto mt-2'>
-          <span>Or log in with</span>
-          <div class='form-row mb-2 mt-3'>
-            <div class="col">
-              <a href='#' class='btn btn-google rounded-pill btn-block'>
-                Google
-              </a>
-            </div>
-            <div class='col'>
-              <a href='#' class='btn btn-facebook rounded-pill btn-block'>
-                Facebook
-              </a>
-            </div>
+              <div class="actions">
+                <%= f.submit "Log in", class:'btn btn-primary form-control rounded-pill btn-block mb-3' %>
+              </div>
+              <% end %>
+
+              <div class='text-center mx-auto mt-2'>
+                <span>Or log in with</span>
+                <div class='form-row mb-2 mt-3'>
+                  <div class="col">
+                    <a href='#' class='btn btn-google rounded-pill btn-block'>
+                      Google
+                    </a>
+                  </div>
+                  <div class='col'>
+                    <a href='#' class='btn btn-facebook rounded-pill btn-block'>
+                      Facebook
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+
+              <div class='text-center mx-auto mt-4'>
+                <small>
+                  <span>Don't have an account yet?</span>
+                  <%= render "devise/shared/links" %>
+                </small>
+              </div>
 
           </div>
         </div>
+      </div>
+  </section>
+</body>
 
+</html>
 
-        <div class='text-center mx-auto mt-4'>
-          <small>
-            <span>Don't have an account yet?</span>
-            <%= render "devise/shared/links" %>
-          </small>
-        </div>
-
-    </div>
-  </div>
-</div>

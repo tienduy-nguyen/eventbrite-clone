@@ -18,4 +18,17 @@ module ApplicationHelper
     end
   end
 
+  def get_time(time_utc)
+    return time_utc.strftime("%Y-%m-%d %k:%M:%S")
+  end
+  def get_time_verbose(time_utc)
+    return time_utc.strftime("%B %d,%Y at %k:%M:%p")
+  end
+
+  def is_current_user?(user)
+    if logged_in?  
+      return current_user.id == user.id
+    end
+  end
+
 end
