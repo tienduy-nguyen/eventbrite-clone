@@ -12,10 +12,10 @@ class User < ApplicationRecord
   uniqueness:{case_sensitive: false}, 
   format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
 
-  # validates :password, length: {minimum: 6}, presence: true, on: :create
-  # validates :password_confirmation, length: {minimum: 6}, presence: true, on: :create
-  # validates :password, length: {minimum: 6}, presence: true, on: :update, if: :encrypted_password_changed?
-  # validates :password_confirmation, length: {minimum: 6}, presence: true, on: :update, if: :encrypted_password_changed?
+  validates :password, length: {minimum: 6}, presence: true, on: :create
+  validates :password_confirmation, length: {minimum: 6}, presence: true, on: :create
+  validates :password, length: {minimum: 6}, presence: true, on: :update, if: :encrypted_password_changed?
+  validates :password_confirmation, length: {minimum: 6}, presence: true, on: :update, if: :encrypted_password_changed?
 
   before_save :normalize_name
   before_save :downcase_email

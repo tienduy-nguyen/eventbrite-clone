@@ -32,6 +32,8 @@ puts "Create categories"
     phone: Faker::PhoneNumber.phone_number,
     sex: ['Mr','Mrs', 'Ms'].sample,
     job: Faker::Job.title,
+    password: "1234567",
+    password_confirmation: "1234567",
     company: Faker::Company.name,
     avatar: Faker::Avatar.image,
     description: Faker::Lorem.sentence(word_count: 10, supplemental: true, random_words_to_add: 10),
@@ -64,7 +66,7 @@ end
 puts "Create Attendances"
 
 
-Create Tag
+# # # Create Tag
 30.times do
   title = Faker::Dessert.variety.strip.downcase
   title.gsub!(/\s+/, '-')

@@ -19,10 +19,10 @@ class Event < ApplicationRecord
 
   validate  :picture_size
   validate :start_date_must_be_start_from_today
-  before_save :auto_end_date
   validate :past_date_not_changed
-
   
+  
+  before_save :auto_end_date
   before_save :normalize_duration
 
 
