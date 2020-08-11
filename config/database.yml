@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *default
-  database: eventbrite_test
+  database: eventlove_test
   host: localhost
   username: postgres
   password: postgres
@@ -22,6 +22,4 @@ test:
 #
 production:
   <<: *default
-  database: eventbrite_production
-  username: postgres
-  password: postgres
+  database: eventlove_production
