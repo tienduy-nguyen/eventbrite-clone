@@ -9,19 +9,19 @@ development:
   <<: *default
   database: eventbrite_dev
   host: localhost
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PWD']
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PWD'] %>
 
 test:
   <<: *default
   database: eventlove_test
   host: localhost
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PWD']
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PWD'] %>
 
 #
 production:
   <<: *default
   database: eventlove_production
-  # username: ENV['DB_USERNAME']
-  # password: ENV['DB_PWD']
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PWD'] %>
