@@ -19,83 +19,92 @@
 </head>
 
 <body>
+  <!-- Start navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light nav-bg-light fixed-top py-2" id="main-nav">
+        <div class="container-fluid">
+        <% if url_contains_account_settings? %>
+          <div class="sidebar-top">
+            <a class="mr-4 ml-0" style="text-decoration:none;">
+              <i class="fas fa-bars fa-2x " onclick="collapseSidebar()"></i>
+            </a>
+          </div>
+        <% end %>
+          <a class="navbar-brand mr-3" href="<%= root_path %>">
+            <img src="<%= asset_path('logo.png')%>" width="200" height="40" alt="logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <nav class="navbar navbar-expand-lg navbar-light nav-bg-light fixed-top py-2" id="main-nav">
-    <div class="container-fluid">
-     <% if url_contains_account_settings? %>
-       <div class="sidbar-top">
-        <a class="mr-4 ml-0">
-          <i class="fas fa-bars fa-2x " onclick="collapseSidebar()"></i>
-        </a>
-      </div>
-    <% end %>
-      <a class="navbar-brand mr-3" href="<%= root_path %>">
-        <img src="<%= asset_path('logo.png')%>" width="200" height="40" alt="logo">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <!-- Search form -->
+              <form class="form-inline">
+                <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+              </form>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <!-- Search form -->
-          <form class="form-inline">
-            <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-          </form>
+            </ul>
+            <ul class="navbar-nav ml-auto py-2">
+              <li class="nav-item py-2 <%= active_class(root_path) %>">
+                <a href="<%= events_path %>" class="nav-link">Browse Events</a>
+              </li>
+              <% if !user_signed_in? %>
+                <!-- User not logged in -->
 
-        </ul>
-        <ul class="navbar-nav ml-auto py-2">
-          <li class="nav-item py-2 <%= active_class(root_path) %>">
-            <a href="<%= events_path %>" class="nav-link">Browse Events</a>
-          </li>
-          <% if !user_signed_in? %>
-            <!-- User not logged in -->
+                <li class="nav-item py-2 <%= active_class(root_path) %>">
+                  <a href="<%= static_pages_help_path %>" class="nav-link">Help</a>
+                </li>
 
-            <li class="nav-item py-2 <%= active_class(root_path) %>">
-              <a href="<%= static_pages_help_path %>" class="nav-link">Help</a>
-            </li>
+                <li class="nav-item py-2 <%= active_class(root_path) %>">
+                  <a href="<%= new_user_session_path %>" class="nav-link"><i class="fas fa-sign-in-alt"></i> Log in</a>
+                </li>
+                <li class="nav-item py-2 <%= active_class(root_path) %>">
+                  <a href="<%= new_user_registration_path %>" class="nav-link"><i class="fas fa-user-plus"></i> Sign up</a>
+                </li>
+              <% else %>
+                <!-- User logged in -->
+                <li class="nav-item py-2 <%= active_class(root_path) %>">
+                <a href="<%= new_event_path %>" class="nav-link"><i class="fas fa-plus"></i> Create Events</a>
+                </li>
 
-            <li class="nav-item py-2 <%= active_class(root_path) %>">
-              <a href="<%= new_user_session_path %>" class="nav-link"><i class="fas fa-sign-in-alt"></i> Log in</a>
-            </li>
-            <li class="nav-item py-2 <%= active_class(root_path) %>">
-              <a href="<%= new_user_registration_path %>" class="nav-link"><i class="fas fa-user-plus"></i> Sign up</a>
-            </li>
-          <% else %>
-            <!-- User logged in -->
-            <li class="nav-item py-2 <%= active_class(root_path) %>">
-            <a href="<%= new_event_path %>" class="nav-link"><i class="fas fa-plus"></i> Create Events</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
-                  role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="<%= asset_path('felix.jpg')%>"
-                    width="40" height="40" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-menu-user" 
-                      aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Collections</a>
-                  <a class="dropdown-item" href="#">Manage Events</a>
-                  <a class="dropdown-item" href="#">Organizer Profile</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Create Event</a>
-                  <a class="dropdown-item" href="<%= accountsettings_accountsettings_path %>">Account Settings</a>
-                  <a class="dropdown-item" 
-                    href="<%= destroy_user_session_path %>" data-method="DELETE"
-                  >Log Out</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="<%= static_pages_help_path %>">Help</a>
-                </div>
-            </li>
-          <% end %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
+                      role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="<%= asset_path('felix.jpg')%>"
+                        width="40" height="40" class="rounded-circle">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-user p-0" 
+                          aria-labelledby="navbarDropdownMenuLink">
+                        <div class="d-flex flex-row py-2 mt-0" style="background-color: #f1f1f1">
+                            <div><i class="fas fa-user mx-3 py-3"></i></div>
+                            <a href="<%= accountsettings_accountsettings_path %>" class ="p-0 nav-link" >
+                          <span><strong><%= current_user.full_name %></strong></span><br>
+                          <span class="text-muted"><%= current_user.email %></span>
+                      </a>
+                        </div>
+                      
+                      <a class="dropdown-item" href="#">Collections</a>
+                      <a class="dropdown-item" href="#">Manage Events</a>
+                      <a class="dropdown-item" href="#">Organizer Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Create Event</a>
+                      <a class="dropdown-item" href="<%= accountsettings_accountsettings_path %>">Account Settings</a>
+                      <a class="dropdown-item" 
+                        href="<%= destroy_user_session_path %>" data-method="DELETE"
+                      >Log Out</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="<%= static_pages_help_path %>">Help</a>
+                    </div>
+                </li>
+              <% end %>
 
 
-      </div>
-    </div>
-  </nav>
+          </div>
+        </div>
+      </nav>
+  <!-- End navbar -->
 
 
   <!-- Main content of body -->

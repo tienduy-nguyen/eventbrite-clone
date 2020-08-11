@@ -6,6 +6,8 @@
 </head>
 
 <body>
+
+<% if !current_user.nil? %>
   <!-- MAIN BODY -->
   <%= render 'sidebar'  %>
   <section class="account-settings-section">
@@ -16,7 +18,7 @@
         <div class="col-lg-8 col-md-10  offset-lg-2 col-12 ">
           <div class="col">
             <div class="account_created_at ml-auto" style="float:right;">
-            Account since <%= get_time_verbose(current_user.created_at) %>
+            Account since <%= get_time_verbose(current_user.created_at) unless current_user.nil? %>
           </div>
           <div class="col">
               <h1>Account Information</h1>
@@ -27,7 +29,7 @@
             <h3 class="mb-3">Account email address</h3>
             <span ><%= current_user.email %></span>
             <div>
-              <a href="<%= accountsettings_user_secret_path %>"
+              <a href="<%= accountsettings_usersecret_path %>"
               class="btn btn-light border-info mt-2">Change</a>
             </div>
           </div>
@@ -169,6 +171,15 @@
     </div>
     <!-- end content -->
   </section>
+
+<!-- If user not logged -->
+
+  <% else %>
+  <div class="container text-center">
+      <h3>You need to loggin to see your account settings.</h2>
+      Back to <a href="<%= new_user_session_path %>">Login</a>
+  </div>
+  <% end %>
 </body>
 
 </html>

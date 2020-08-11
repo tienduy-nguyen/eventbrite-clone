@@ -36,6 +36,9 @@
       margin-left: 0;
     }
   }
+  section {
+    margin-top: 40px;
+  }
 }
 .sidebar-wrap {
   position: relative;
@@ -104,7 +107,7 @@
   width: 250px;
 }
 
-.sidebar-expand .wrapper {
+.sidebar-expand .account-settings-section {
   margin-left: 250px;
 }
 
@@ -118,8 +121,9 @@
   transition: margin-left 0.5s;
 }
 
+//------------------------------------//
 // Drag drop photo
-
+//------------------------------------//
 .uploadOuter {
   text-align: center;
   padding: 20px;
