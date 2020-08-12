@@ -15,9 +15,22 @@
               <p>Category:<%=  @event.category.title %></p>
               <p>Duration: <%= @event.duration %></p>
               <p>Price: <%= @event.price %></p>
-              <p>Organizer: <%= @event.organizer.full_name %></p>
+              <strong>Organizer: <%= @event.organizer.full_name %></p></strong><p>
               <p>Location: <%= @event.location %></p>
-              <p>Description: <%= @event.description %></p>
+              <p class="mb-3">Description: <%= @event.description %></p>
+              <div class="hidden">
+                  <%= @attendees = get_attendees_by_eventid(@event.id) %>
+              </div>
+              <div>
+                  <h5>List of attendees: </h5>
+                  <ul>
+                    <% @attendees.each do |attendee|%>
+                      <li> <%= attendee.full_name %></li>
+
+                    <% end %>
+                  </ul>
+              </div>
+
             </div>
         </div>
     </div>

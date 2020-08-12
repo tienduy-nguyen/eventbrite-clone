@@ -58,5 +58,24 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def get_attendees_by_eventid(event_id)
+    @attendees =[]
+    attendances = Attendance.where(event_id: event_id)
+    if !attendances.nil?
+      begin
+        attendances.each do |att|
+          if !@attendees.include?(att.attendee)
+            @attendees.push(att.attendee)
+          end
+        end
+      rescue => exception
+        if attendances.count  = 1
+          @attendees.push(attendances.attendee)
+        end
+      end
+    end
+    return @attendees
+  end
+
 
 end
