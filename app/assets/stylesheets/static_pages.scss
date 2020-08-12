@@ -1,6 +1,17 @@
 // // Intro information
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
 .intro-send-message {
   background-color: #1e0a3c;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  width: 100%;
 }
 .intro-photo {
   background: {
@@ -10,6 +21,7 @@
   background-size: cover;
   position: relative;
   min-height: 80vh;
+  width: 100%;
 
   .intro-fight {
     position: absolute;
@@ -19,7 +31,7 @@
     bottom: 0;
 
     background-color: #ffdc23;
-    width: 35em;
+    max-width: 35em;
     min-height: 11em;
     .intro-fight-title {
       background-color: #333;
@@ -28,6 +40,20 @@
       font-weight: 700;
       font-size: 2rem;
       display: inline-block;
+    }
+  }
+}
+
+@media all and (max-width: 768px) {
+  .intro-photo {
+    padding: auto 0px;
+
+    .intro-fight {
+      .intro-fight-title {
+        padding: 2px;
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
     }
   }
 }
