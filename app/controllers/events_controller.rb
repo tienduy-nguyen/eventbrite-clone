@@ -16,12 +16,14 @@ class EventsController < ApplicationController
   def new 
     @event = Event.new
     @tags = Tag.all
+    @organizers = current_user.organizers
+    @types  =[]
+    @categories  = Category.all
   end
 
   # POST /events/
   def create
     @event = Event.new(event_params)
-    @event.organizer = current_user
     if @event.save
       flash[:success] = "Create event successfully!"
       @tag = Tag.find(params[:tag])
@@ -39,13 +41,39 @@ class EventsController < ApplicationController
   # GET /events/:id/edit
   def edit
     @events = Event.find(params[:id])
+    if @event.organizer.user.id != current_user.id
+      flash[:error] = "Permission denied!"
+      redirect_to :back
+    end
     @tags = Tags.all
-    if 
+    @organizers = current_user.organizers
+    @types  =[]
+    @categories  = Category.all
   end
 
   # PUT events/:id/edit
   def update
+    if @event.update(event_params)
+      flash[:success] = "Update Event Success!"
+      redirect_to :back
+    else
+      @event.errors.full_messages.each do |message|
+      flash[:error] = message
+      end
+      render :edit
+    end
+  end
 
+  # DELETE /uses/:id
+  def destroy
+    @event = event.find(params[:id])
+    if @event.organizer.user.id != current_user.id
+      flash[:error] = "Permission denied!"
+      redirect_to :back
+    else
+      @event.destroy
+      redirect_to events_path
+    end
   end
     
   private
@@ -63,6 +91,7 @@ class EventsController < ApplicationController
     :loc_lat,
     :loc_long,
     :category_id,
+    :type_id,
     :description,
     :organizer_id
     )

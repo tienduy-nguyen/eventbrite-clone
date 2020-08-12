@@ -1,0 +1,64 @@
+ <%= form_for @event do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <h2>Basic Info</h2>
+    <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
+    <div class="form-group mb-3">
+      <%= f.label :title %>
+      <%= f.text_field :title, autofocus: true, autocomplete: "title",
+              class: 'form-control', require: true
+      %>
+    </div>
+
+    <div class="form-group mb-4">
+      <%= f.label :organizer_id %>
+      <div>
+      <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}),
+              {}, class: "form-control"
+      %>
+      
+      </div>
+      <span><small>
+      This profile describes a unique organizer and shows all of the events on one page.
+      <a href="#">
+      View Organizer Info
+      </a> 
+      </small></span>
+    </div>
+
+    <div class="group-row">
+      <div class="col">
+           <%= f.label :type_id %>
+          <div>
+          <%= f.select :type_id, options_for_select(@types.collect{|o| [o.name, o.id]}),
+                  {}, class: "form-control"
+          %>
+      </div>
+       <div class="col">
+          <%= f.label :category_id %>
+          <div>
+          <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.name, o.id]}),
+                  {}, class: "form-control"
+          %>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class:'form-control', required: true, minlength: 6
+      %>
+    </div>
+
+    <div class="fomr-group mb-3">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: "current-password",
+              class:'form-control', required: true, minlength: 6
+      %>
+    </div>
+
+    <div class="actions mb-5">
+      <%= f.submit "Update" , class:"btn btn-primary"%>
+      <%= link_to 'Back', :back , class: 'btn btn-dark ml-auto' %>
+    </div>
+<% end %>
