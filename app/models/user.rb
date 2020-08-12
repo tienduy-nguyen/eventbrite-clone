@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :events, foreign_key: 'organizer_id', class_name: 'User',  dependent: :destroy
+  has_many :organizers, dependent: :destroy
+  has_many :events, through: :organizers,  dependent: :destroy
   has_many :attendances, foreign_key: 'attendee_id', class_name: 'User'
   has_many :events, foreign_key: 'attendee_id', class_name: 'User', through: :attendances
 
@@ -22,12 +23,16 @@ class User < ApplicationRecord
   before_save :get_full_name
 
   # Send email
+  after_create :create_default_organizer
   after_create :welcome_send
 
 
 
   # Private method --------------------------------------
   private
+  def create_default_organizer
+    Organizer.create(name: self.full_name,  user: self)
+  end
   
   # Send email with sendgrid
   def welcome_send

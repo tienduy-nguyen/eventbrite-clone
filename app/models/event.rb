@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   # default_scope -> { order(start_date: :asc) }
-  belongs_to :organizer, class_name: 'User'
+  belongs_to :organizer
   has_many :attendances, dependent: :destroy
   has_many :attendees, through: :attendances, class_name: 'User'
 
@@ -24,6 +24,29 @@ class Event < ApplicationRecord
   
   before_save :auto_end_date
   before_save :normalize_duration
+
+  ##----------------------
+  # Public method
+
+  # Serch attendees by event id
+  def self.attendees_by(eventid)
+    @attendees =[]
+    attendances = Attendance.where(event_id: eventid)
+    if attendances.nil?
+      return @attendees
+    end
+    if attendances.count == 1
+      @attendees.push(attendances.attendee)
+    else
+      attendances.each do |att|
+        if !@attendees.include?(att.attendee)
+          @attendees.push(att.attendee)
+        end
+      end
+    end
+
+    return @attendees
+  end
 
   private
   # Validates the size of an uploaded picture.
@@ -62,5 +85,6 @@ class Event < ApplicationRecord
         self.duration = rounded > n ? rounded : rounded + 5
       end
   end
+
 
 end

@@ -43,7 +43,7 @@ puts "Create users"
 
 50.times do
   Event.create(
-    organizer: User.all.sample,
+    organizer: User.all.sample.organizers.first,
     title: Faker::Quote.matz[0..120],
     start_date: Faker::Date.forward(days: rand(2..50)),
     duration: rand(120..480),
@@ -83,3 +83,9 @@ puts "Tags created!"
   )
 end
 puts "EventTags created!"
+
+# Create Organizer by default
+User.all.each do |user|
+  Organizer.create(name: user.full_name, user: user)
+
+end

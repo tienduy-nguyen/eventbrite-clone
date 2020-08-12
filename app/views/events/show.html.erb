@@ -9,8 +9,8 @@
   <section>
      <div class="container">
         <div class='row'>
-            <div class='col-lg-8 col-md-10 mx-auto mt-4'>
-              <h2 class="mb-4 text-center">Title:<%=  @event.title %></h2>
+            <div class='col-lg-12 mx-auto mt-4'>
+              <h2 class="mb-4 text-left">Title:<%=  @event.title %></h2>
               <p>Date:<%= get_time_verbose(@event.start_date) %></p>
               <p>Category:<%=  @event.category.title %></p>
               <p>Duration: <%= @event.duration %></p>
@@ -18,17 +18,19 @@
               <strong>Organizer: <%= @event.organizer.full_name %></p></strong><p>
               <p>Location: <%= @event.location %></p>
               <p class="mb-3">Description: <%= @event.description %></p>
-              <div class="hidden">
-                  <%= @attendees = get_attendees_by_eventid(@event.id) %>
-              </div>
+
               <div>
                   <h5>List of attendees: </h5>
-                  <ul>
-                    <% @attendees.each do |attendee|%>
-                      <li> <%= attendee.full_name %></li>
-
-                    <% end %>
-                  </ul>
+                  <% if @attendees.count < 1%>
+                    <span class="text-muted">This event has not attendees yet</span>
+                  <% else %>
+                    <ul>
+                      <% @attendees.each do |attendee|%>
+                        <li> <%= attendee.full_name %></li>
+                      <% end %>
+                    </ul>
+                  <% end%>
+                 
               </div>
 
             </div>
