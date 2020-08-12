@@ -1,3 +1,4 @@
+
  <%= form_for @event do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -26,39 +27,73 @@
       </small></span>
     </div>
 
-    <div class="group-row">
+    <div class="form-row mb-4">
       <div class="col">
            <%= f.label :type_id %>
-          <div>
-          <%= f.select :type_id, options_for_select(@types.collect{|o| [o.name, o.id]}),
+          <div class="">
+          <%= f.select :type_id, options_for_select(@types.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control"
           %>
+          </div>
       </div>
        <div class="col">
           <%= f.label :category_id %>
           <div>
-          <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.name, o.id]}),
+          <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control"
           %>
+          </div>
       </div>
     </div>
 
-    <div class="form-group mb-3">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password",
-              class:'form-control', required: true, minlength: 6
+    <div class="form-group mb-5">
+      <%= f.label :tags %><br>
+      <small>Improve discoverability of your event by adding tags relevant to the subject matter.</small>
+      <input class="form-control mt-2">
+      <div>
+      <small>0/10 tags</small>
+      </div>
+      
+    </div>
+    <hr>
+
+    <div class="form-group mb-5">
+      <h3>Type Location</h3>
+      <span>Help people in the area discover your event and let attendees know where to show up.</span>
+      <%= f.select :type_location, options_for_select(["Avenue", "Online event", "To be announced"]), {}, 
+              class: 'form-control mt-2 mb-3'
       %>
+
+      <%= f.label :location %>
+      <%= f.text_field :location, class: 'form-control'%>
+    </div>
+    <hr>
+
+    <div class="form-group mb-3">
+      <h3>Date And Time</h3>
+      <span>Tell event-goers when your event starts and ends so they can make plans to attend..</span>
+      
     </div>
 
-    <div class="fomr-group mb-3">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: "current-password",
-              class:'form-control', required: true, minlength: 6
-      %>
+      <div class="form-row mb-4">
+        <div class="col">
+            <label>Start Date: </label>
+            <input id="startDate" name="startDate" type="text" class="form-control" />
+        </div>
+         <div class="col">
+              <%= f.label :start_at %>
+              <div>
+              <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
+                      {}, class: "form-control"
+              %>
+          </div>
+      </div>
     </div>
+
 
     <div class="actions mb-5">
       <%= f.submit "Update" , class:"btn btn-primary"%>
       <%= link_to 'Back', :back , class: 'btn btn-dark ml-auto' %>
     </div>
 <% end %>
+

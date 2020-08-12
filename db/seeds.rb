@@ -24,6 +24,31 @@ Category.create(title: "Other")
 
 puts "Create categories"
 
+Type.create(title: "Appearance or Singing")
+Type.create(title: "Attraction")
+Type.create(title: "Camp, Trip or Retreat")
+Type.create(title: "Class, Training or Workshop")
+Type.create(title: "Concert & Performance")
+Type.create(title: "Festival or Fair")
+Type.create(title: "Convention")
+Type.create(title: "Diner or Gala")
+Type.create(title: "Game or Competition")
+Type.create(title: "Meeting or Network Event")
+Type.create(title: "Party or Social Gathering")
+Type.create(title: "Race or Endurance Event")
+Type.create(title: "Rally")
+Type.create(title: "Screening")
+Type.create(title: "Seminar or Talk")
+Type.create(title: "Tour")
+Type.create(title: "Tournament")
+Type.create(title: "Webinar")
+Type.create(title: "Online Conference")
+Type.create(title: "Other")
+
+puts "Create types"
+
+
+
 100.times do
   User.create(
     first_name: Faker::Name.first_name,
@@ -48,6 +73,7 @@ puts "Create users"
     start_date: Faker::Date.forward(days: rand(2..50)),
     duration: rand(120..480),
     price: rand(0..500),
+    type_location: "Online Event",
     location: Faker::Address.full_address,
     category: Category.all.sample,
     description: Faker::Lorem.sentence(word_count: rand(20..100)) #=> "Quaerat quam unde."

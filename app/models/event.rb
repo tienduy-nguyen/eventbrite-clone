@@ -11,8 +11,9 @@ class Event < ApplicationRecord
 
   validates :title, presence: true, length: {in: 5..140}
   validates :start_date, presence: true
-  # validates :start_at, presence: true
-  validates :duration, presence: true, format: { with: /\A\d+\z/, message: "Duration in munutes must be a valid number" }
+  validates :start_at, presence: true
+  validates :end_at, presence: true
+  
   validates :description, presence: true, length: {in: 20..1000}
   validates :price, presence: true, format: { with: /\A\d+\z/, message: "please enter a valid number" }
   validates :location, presence: true
@@ -77,14 +78,21 @@ class Event < ApplicationRecord
       self.end_date = self.start_date
     end
   end
+  def auto_end_time
+    if self.end_at.nil?
+      self.end_at = self.start_at + 3
+    end
+  end
 
   # Round durantion 5 minutes
   def normalize_duration
+    if !self.duration.nil?
       n = self.duration
       if n % 5 != 0 
         rounded = n.round(-1)
         self.duration = rounded > n ? rounded : rounded + 5
       end
+    end
   end
 
 

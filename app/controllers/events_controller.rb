@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @tags = Tag.all
     @organizers = current_user.organizers
-    @types  =[]
+    @types  = Type.all
     @categories  = Category.all
   end
 
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
     end
     @tags = Tags.all
     @organizers = current_user.organizers
-    @types  =[]
+    @types  = Type.all
     @categories  = Category.all
   end
 
@@ -93,7 +93,8 @@ class EventsController < ApplicationController
     :category_id,
     :type_id,
     :description,
-    :organizer_id
+    :organizer_id,
+    :type_location
     )
   end
 end

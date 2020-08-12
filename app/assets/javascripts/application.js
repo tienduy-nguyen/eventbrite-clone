@@ -1,3 +1,7 @@
+//= require jquery3
+//= require popper
+//= require bootstrap
+
 //----------------------------------------------//
 // Dropdown menu
 //----------------------------------------------//
@@ -52,3 +56,7 @@ function drag() {
 function drop() {
   document.getElementById('uploadFile').parentNode.className = 'dragBox';
 }
+
+//----------------------------------------------//
+// Date picker
+//----------------------------------------------//
