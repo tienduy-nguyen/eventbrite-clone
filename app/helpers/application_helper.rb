@@ -31,6 +31,14 @@ module ApplicationHelper
     end
   end
 
+  def get_city_from_address(address)
+    begin
+      return address.split(',')[-2..-1][0].strip
+    rescue => exception
+      return "Unknown"
+    end
+  end
+
   def url_contains_account_settings?
     url = request.path_info
     return url.include?('accountsettings')

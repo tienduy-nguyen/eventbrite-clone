@@ -11,7 +11,16 @@
                 </a>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2" style="color: #EF5537 "><%= get_time_verbose(event.start_date) %></h6>
-                  <h4 class="card-title"><%= truncate(event.title, :length => 50) %></h4>
+                  <h4 class="card-title mb-4"><%= truncate(event.title, :length => 50) %></h4>
+                  <div class="row">
+                    <div class="col">
+                    <a href="#" class="tag"><%= event.category.title %></a>
+
+                    </div>
+                    <div class="col">
+                    <a href="#" class="d-none d-lg-block" style="float:right;" >Location: <%= get_city_from_address(event.location) %></a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
