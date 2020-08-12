@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   has_many :event_tags
   has_many :tags, through: :event_tags
   belongs_to :category
+  belongs_to :type
 
   validates :title, presence: true, length: {in: 5..140}
   validates :start_date, presence: true
