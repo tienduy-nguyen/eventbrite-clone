@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <% content_for :title, "Event" %>
+</head>
+<body>
+  <!-- MAIN BODY -->
+  <section>
+     <div class="container">
+        <div class='row'>
+            <div class='col-lg-8 col-md-10 mx-auto mt-4'>
+              <h2 class="mb-4 text-center">Title:<%=  @event.title %></h2>
+              <p>Date:<%= get_time_verbose(@event.start_date) %></p>
+              <p>Category:<%=  @event.category.title %></p>
+              <p>Duration: <%= @event.duration %></p>
+              <p>Price: <%= @event.price %></p>
+              <p>Organizer: <%= @event.organizer.full_name %></p>
+              <p>Location: <%= @event.location %></p>
+              <p>Description: <%= @event.description %></p>
+            </div>
+        </div>
+    </div>
+  </section>
+</body>
+
+</html>

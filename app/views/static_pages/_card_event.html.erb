@@ -4,7 +4,7 @@
     <% events.each_with_index do |event, index|%>
         <div class="col-lg-3 col-md-4 col-sm-12 my-3">
             <div class="card">
-                <a href="#">
+                <a href="<%= event_path(event.id) %>">
                   <img class="card-img-top" 
                   src="https://source.unsplash.com/random?<%= index%>" 
                   alt="Bologna">

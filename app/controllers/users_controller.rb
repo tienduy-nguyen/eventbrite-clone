@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   end
 
+
   def update_profile
     puts "----------------------------------"
     puts 'update'
@@ -26,12 +27,12 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Update user profile succesfully!"
-      redirect_back_or @user
+      redirect_to :back
     else
       @user.errors.full_messages.each do |message|
         flash[:error] = message
       end
-      render :edit
+      render :contact_info
     end
 
   end
