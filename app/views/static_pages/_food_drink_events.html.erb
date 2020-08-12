@@ -1,7 +1,7 @@
- <div class="tab-pane fade show active" 
+ <div class="tab-pane fade" 
  id="food_drink_events" role="tabpanel" aria-labelledby="food_drink_events-tab">
  
- <% if @food_drink_events.nil? %>
+ <% if @food_drink_events.nil? || @food_drink_events.count < 1 %>
     <div class="mt-4">
       No events to show here
     </div>
