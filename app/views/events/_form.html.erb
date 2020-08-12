@@ -1,99 +1,151 @@
+<%= form_for @event do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
- <%= form_for @event do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <h2>Basic Info</h2>
-    <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
-    <div class="form-group mb-3">
-      <%= f.label :title %>
-      <%= f.text_field :title, autofocus: true, autocomplete: "title",
+<h2>Basic Info</h2>
+<p>Name your event and tell event-goers why they should come. Add details that highlight what makes it unique.</p>
+<div class="form-group mb-3">
+  <%= f.label :title %>
+  <%= f.text_field :title, autofocus: true, autocomplete: "title",
               class: 'form-control', require: true
       %>
-    </div>
+</div>
 
-    <div class="form-group mb-4">
-      <%= f.label :organizer_id %>
-      <div>
-      <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}),
+<div class="form-group mb-4">
+  <%= f.label :organizer_id %>
+  <div>
+    <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}),
               {}, class: "form-control"
       %>
-      
-      </div>
-      <span><small>
+
+  </div>
+  <span><small>
       This profile describes a unique organizer and shows all of the events on one page.
       <a href="#">
-      View Organizer Info
-      </a> 
-      </small></span>
-    </div>
+        View Organizer Info
+      </a>
+    </small></span>
+</div>
 
-    <div class="form-row mb-4">
-      <div class="col">
-           <%= f.label :type_id %>
-          <div class="">
-          <%= f.select :type_id, options_for_select(@types.collect{|o| [o.title, o.id]}),
+<div class="form-row mb-4">
+  <div class="col">
+    <%= f.label :type_id %>
+    <div class="">
+      <%= f.select :type_id, options_for_select(@types.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control"
           %>
-          </div>
-      </div>
-       <div class="col">
-          <%= f.label :category_id %>
-          <div>
-          <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
+    </div>
+  </div>
+  <div class="col">
+    <%= f.label :category_id %>
+    <div>
+      <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control"
           %>
-          </div>
-      </div>
     </div>
+  </div>
+</div>
 
-    <div class="form-group mb-5">
-      <%= f.label :tags %><br>
-      <small>Improve discoverability of your event by adding tags relevant to the subject matter.</small>
-      <input class="form-control mt-2">
-      <div>
-      <small>0/10 tags</small>
-      </div>
-      
-    </div>
-    <hr>
+<div class="form-group mb-5">
+  <%= f.label :tags %><br>
+  <small>Improve discoverability of your event by adding tags relevant to the subject matter.</small>
+  <input class="form-control mt-2">
+  <div>
+    <small>0/10 tags</small>
+  </div>
 
-    <div class="form-group mb-5">
-      <h3>Type Location</h3>
-      <span>Help people in the area discover your event and let attendees know where to show up.</span>
-      <%= f.select :type_location, options_for_select(["Avenue", "Online event", "To be announced"]), {}, 
+</div>
+<hr>
+
+<div class="form-group mb-5">
+  <h3>Type Location</h3>
+  <span>Help people in the area discover your event and let attendees know where to show up.</span>
+  <%= f.select :type_location, options_for_select(["Avenue", "Online event", "To be announced"]), {}, 
               class: 'form-control mt-2 mb-3'
       %>
 
-      <%= f.label :location %>
-      <%= f.text_field :location, class: 'form-control'%>
-    </div>
-    <hr>
+  <%= f.label :location %>
+  <%= f.text_field :location, class: 'form-control'%>
+</div>
+<hr>
 
-    <div class="form-group mb-3">
-      <h3>Date And Time</h3>
-      <span>Tell event-goers when your event starts and ends so they can make plans to attend..</span>
-      
-    </div>
+<div class="form-group mb-3">
+  <h3>Date And Time</h3>
+  <span>Tell event-goers when your event starts and ends so they can make plans to attend.</span>
+</div>
 
-      <div class="form-row mb-4">
-        <div class="col">
-            <label>Start Date: </label>
-            <input id="startDate" name="startDate" type="text" class="form-control" />
-        </div>
-         <div class="col">
-              <%= f.label :start_at %>
-              <div>
-              <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
+<div class="form-row mb-5">
+  <div class="col">
+    <%= f.label :start_date %>
+    <%= f.text_field :start_date, placeholder: "Date begin", class: "form-control datepicker" %>
+  </div>
+  <div class="col">
+    <%= f.label :start_at %>
+    <div>
+      <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
                       {}, class: "form-control"
               %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="form-group mb-5">
+  <h3>Main Event Image</h3>
+  <span>This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px
+    (2:1 ratio)</span>
+  <section class="drag-drop-phot">
+    <form action="" method="POST" enctype="multipart/form-data">
+
+      <div class="form-group">
+        <div class="preview-zone hidden">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <div><b>Preview</b></div>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-danger btn-xs remove-preview">
+                  <i class="fa fa-times"></i> Reset This Form
+                </button>
+              </div>
+            </div>
+            <div class="box-body"></div>
           </div>
+        </div>
+        <div class="dropzone-wrapper--cus">
+          <div class="dropzone-desc">
+            <i class="glyphicon glyphicon-download-alt"></i>
+            <p>Choose an image file or drag it here.</p>
+          </div>
+          <input type="file" name="img_logo" class="dropzone">
+        </div>
       </div>
-    </div>
+
+      <button type="submit" class="btn btn-primary ml-0">Upload</button>
+    </form>
+  </section>
+
+</div>
+<hr>
+
+<div class="form-group mb-5">
+  <h3>Description</h3>
+  <span>Add more details to your event like your schedule, sponsors, or featured guests.</span>
+  <textarea type="text-area" class="form-control" rows="10"></textarea>
+</div>
 
 
-    <div class="actions mb-5">
-      <%= f.submit "Update" , class:"btn btn-primary"%>
-      <%= link_to 'Back', :back , class: 'btn btn-dark ml-auto' %>
-    </div>
+
+
+
+
+
+
+<div class="actions mb-5">
+  <%= f.submit "Update" , class:"btn btn-primary"%>
+  <%= link_to 'Back', :back , class: 'btn btn-dark ml-auto' %>
+</div>
 <% end %>
 
+<script>
+
+</script>
