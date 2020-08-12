@@ -34,8 +34,8 @@
             </div>
           </div>
 
-
-          <form>
+          <!-- Start form -->
+          <%= form_with(scope: :user, url: accountsettings_accountsettings_path, method: :patch, local:true) do |f| %>
             <!-- Account photo -->
             <div class="account-photo mb-5">
               <h3>Profile Photo</h3>
@@ -64,7 +64,9 @@
                               <i class="glyphicon glyphicon-download-alt"></i>
                               <p>Choose an image file or drag it here.</p>
                             </div>
-                            <input type="file" name="img_logo" class="dropzone">
+                            <input type="file" name="img_logo" class="dropzone" 
+                                    
+                            >
                           </div>
                         </div>
                       </div>
@@ -72,7 +74,8 @@
 
                     <div class="row">
                       <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary pull-right">Upload</button>
+                        <button type="submit" 
+                        class="btn btn-primary pull-right">Upload</button>
                       </div>
                     </div>
                   </div>
@@ -84,49 +87,55 @@
             <!-- Start account info -->
             <div class="contact-info mb-5">
               <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                   <h3>Contact Information</h3>
 
                   <div class="form-group mb-3 ml-0">
-                    <label>Prefix</label>
-                    <select class="form-control" id="selectSex">
-                      <option>Mr.</option>
-                      <option>Ms</option>
-                      <option>Mrs.</option>
-                    </select>
+                    <%= f.label "Prefix" %>
+                    <div class="">
+                        <%= f.select :sex , options_for_select(["Mr.","Ms","Mrs.","Other"]), :class => 'form-control' %>
+                    </div>
                   </div>
 
                   <div class="form-row mb-3 ml-0">
                     <div class="col">
-                      <label>First Name</label>
-                      <input type="text" class="form-control" value="<%= current_user.first_name %>">
+                      <%= f.label :first_name %>
+                      <%= f.text_field :first_name, class: "form-control", value: current_user.first_name %>
                     </div>
                     <div class="col">
-                      <label>Last Name</label>
-                      <input type="text" class="form-control" value="<%= current_user.last_name %>">
+                      <%= f.label :last_name %>
+                      <%= f.text_field :last_name, class: "form-control", value: current_user.last_name %>
                     </div>
                   </div>
 
                   <div class="form-group mb-3">
-                    <label>Phone</label>
-                    <input type="text" class="form-control" value="<%= current_user.phone %>">
+                    <%= f.label :phone %>
+                    <%= f.text_field :phone, class: "form-control", value: current_user.phone %>
                   </div>
 
                   <div class="form-row mb-3 ml-0">
                     <div class="col">
-                      <label>Job title</label>
-                      <input type="text" class="form-control" value="<%= current_user.job %>">
+                      <%= f.label :job %>
+                      <%= f.text_field :job, class: "form-control", value: current_user.job %>
                     </div>
                     <div class="col">
-                      <label>Company</label>
-                      <input type="text" class="form-control" value="<%= current_user.company %>">
+                      <%= f.label :company %>
+                      <%= f.text_field :company, class: "form-control", value: current_user.company %>
                     </div>
                   </div>
 
 
                   <div class="form-group mb-3">
-                    <label>Website</label>
-                    <input type="text" class="form-control" value="<%= current_user.website %>">
+                    <%= f.label :website %>
+                    <%= f.text_field :website, class: "form-control", value: current_user.website %>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <%= f.label :description %>
+                    <%= f.text_area :description, 
+                        class: 'form-control text-success', 
+                        rows: '10', placeholder: 'Description',
+                        value: current_user.description %>
                   </div>
 
                 </div>
@@ -136,35 +145,40 @@
 
             <!-- Start address -->
             <div class="account-address">
-              <h3 cl>Address</h3>
-              <div class="form-group mb-3">
-                <label>Address</label>
-                <input type="text" class="form-control" value="<%= current_user.address %>">
+              <div class="row">
+                  <div class="col-lg-10">
+                      <h3 cl>Address</h3>
+                      <div class="form-group mb-3">
+                        <%= f.label :address %>
+                        <%= f.text_field :address, class: "form-control", value: current_user.address %>
+                      </div>
+                      <div class="form-group mb-3">
+                        <label for="">City</label>
+                        <input type="text" class= "form-control">
+                      </div>
+                      <div class="form-group mb-3 ml-0">
+                        <label for="">Country</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="form-row mb-4 ml-0">
+                        <div class="col">
+                          <label for="">Zip/Postal Code</label>
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="col">
+                          <label for="">State</label>
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                  </div>
               </div>
-              <div class="form-group mb-3">
-                <label>City</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group mb-3">
-                <label>Country</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-row mb-4">
-                <div class="col">
-                  <label for="">Zip/Postal Code</label>
-                  <input type="text" class="form-control">
-                </div>
-                <div class="col">
-                  <label for="">State</label>
-                  <input type="text" class="form-control">
-                </div>
-              </div>
+              
 
             </div>
             <!-- End address -->
-            <input type="submit" class="btn btn-danger mb-5" value = "Save" style="min-width: 80px">
-          </form>
-
+             <%= f.submit "Save", class: 'btn btn-danger' %>
+          <% end %>
+          <!-- End form -->
         </div>
       </div>
     </div>

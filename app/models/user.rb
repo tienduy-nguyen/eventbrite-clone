@@ -25,18 +25,15 @@ class User < ApplicationRecord
   after_create :welcome_send
 
 
-  def welcome_send
-    UserMailer.welcome_email(self).deliver_now
-  end
-
-  # GET users/:id/show
-  # def show
-
-  # end
-
 
   # Private method --------------------------------------
   private
+  
+  # Send email with sendgrid
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+  
   # Downcase email before being saved
   def downcase_email
     self.email = email.strip.downcase
@@ -55,6 +52,11 @@ class User < ApplicationRecord
         self.full_name = self.email.split('@')[0]
     else
       self.full_name = "#{self.first_name.capitalize unless self.first_name.nil?} #{self.last_name.capitalize unless self.last_name.nil?}"
+    end
+  end
+  def set_sex
+    if self.sex.nil?
+      self.sex = 'other'
     end
   end
 

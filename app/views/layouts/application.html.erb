@@ -72,7 +72,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" 
                       role="button"
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="<%= asset_path('felix.jpg')%>"
+                      <img src="<%= current_user.avatar || "https://source.unsplash.com/random?avatar"%>"
                         width="40" height="40" class="rounded-circle">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-user p-0" 
