@@ -10,39 +10,53 @@
               class: 'form-control text-success', require: true
       %>
 </div>
+<div class="form-row mb-2">
+  <div class="col">
+    <%= f.label :organizer_id %>
+    <div>
+    <% if !@organizers.nil? %>
+      <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}, params[:organizer_id]),
+                {}, class: "form-control text-success"
+        %>
+    <% end %>
 
-<div class="form-group mb-4">
-  <%= f.label :organizer_id %>
-  <div>
-    <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}, params[:organizer_id]),
-              {}, class: "form-control text-success"
-      %>
-
+    </div>
   </div>
-  <span><small>
-      This profile describes a unique organizer and shows all of the events on one page.
-      <a href="#">
-        View Organizer Info
-      </a>
-    </small></span>
+  <div class="col">
+    <%= f.label :price%>
+    <%= f.number_field :price, class:"form-control text-danger", value: params[:price] %>
+  </div>
+  
 </div>
+<div class="mb-4">
+    <span><small>
+        This profile describes a unique organizer and shows all of the events on one page.
+        <a href="#">
+          View Organizer Info
+        </a>
+      </small></span>
+  </div>
 
 <div class="form-row mb-4">
   <div class="col">
     <%= f.label :type_id %>
+    <% if !@types.nil? %>
     <div class="">
       <%= f.select :type_id, options_for_select(@types.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control text-success"
           %>
     </div>
+    <% end %>
   </div>
   <div class="col">
     <%= f.label :category_id %>
+    <% if !@categories.nil? %>
     <div>
       <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
                   {}, class: "form-control text-success"
           %>
     </div>
+    <% end %>
   </div>
 </div>
 

@@ -55,7 +55,7 @@ puts "Create types"
     last_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     phone: Faker::PhoneNumber.phone_number,
-    sex: ['Mr','Mrs', 'Ms'].sample,
+    sex: ['Mr.','Mrs.', 'Ms'].sample,
     job: Faker::Job.title,
     password: "1234567",
     password_confirmation: "1234567",
@@ -66,12 +66,18 @@ puts "Create types"
 end
 puts "Create users"
 
+User.all.each do |user|
+  Organizer.create(name: user.name, user: user)
+end
+puts "Create Organizer"
+
 50.times do
   Event.create(
-    organizer: User.all.sample.organizers.first,
+    organizer: Organizer.all.sample,
     title: Faker::Quote.matz[0..120],
     start_date: Faker::Date.forward(days: rand(2..50)),
-    duration: rand(120..480),
+    start_at: Time.now,
+    end_at: Time.now + 1*60*60,
     price: rand(0..500),
     type_location: "Online Event",
     location: Faker::Address.full_address,

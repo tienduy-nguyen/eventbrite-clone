@@ -24,13 +24,18 @@ class EventsController < ApplicationController
   # POST /events/
   def create
     @event = Event.new(event_params)
+    @tags = Tag.all
+    @organizers = current_user.organizers
+    @types  = Type.all
+    @categories  = Category.all
+
     if @event.save
       flash[:success] = "Create event successfully!"
-      @tag = Tag.find(params[:tag])
-      EventTag.create(tag: @tag, event: @event)
-      redirect_to :back
+      # @tag = Tag.find(params[:tag])
+      # EventTag.create(tag: @tag, event: @event)
+     redirect_back(fallback_location: root_path)
     else
-      @event.errors;full_messages.each do |message|
+      @event.errors.full_messages.each do |message|
         flash[:error] = message
       end
       render :new
@@ -40,10 +45,10 @@ class EventsController < ApplicationController
 
   # GET /events/:id/edit
   def edit
-    @events = Event.find(params[:id])
+    @event = Event.find(params[:id])
     if @event.organizer.user.id != current_user.id
       flash[:error] = "Permission denied!"
-      redirect_to :back
+     redirect_back(fallback_location: root_path)
     end
     @tags = Tags.all
     @organizers = current_user.organizers
@@ -55,7 +60,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       flash[:success] = "Update Event Success!"
-      redirect_to :back
+     redirect_back(fallback_location: root_path)
     else
       @event.errors.full_messages.each do |message|
       flash[:error] = message
@@ -69,7 +74,7 @@ class EventsController < ApplicationController
     @event = event.find(params[:id])
     if @event.organizer.user.id != current_user.id
       flash[:error] = "Permission denied!"
-      redirect_to :back
+     redirect_back(fallback_location: root_path)
     else
       @event.destroy
       redirect_to events_path
@@ -82,6 +87,8 @@ class EventsController < ApplicationController
     :title,
     :start_date,
     :end_date,
+    :start_at,
+    :end_at,
     :price,
     :location,
     :img_url,

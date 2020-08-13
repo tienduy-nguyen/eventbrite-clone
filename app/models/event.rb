@@ -15,9 +15,9 @@ class Event < ApplicationRecord
   # validates :start_at, presence: true
   # validates :end_at, presence: true
   
-  validates :description, presence: true, length: {in: 20..1000}
+  # validates :description, presence: true, length: {in: 20..1000}
   validates :price, presence: true, format: { with: /\A\d+\z/, message: "please enter a valid number" }
-  validates :location, presence: true
+  # validates :location, presence: true
   validates :category_id, presence: true
 
   validate  :picture_size

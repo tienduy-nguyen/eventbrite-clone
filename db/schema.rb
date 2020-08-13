@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_174322) do
+ActiveRecord::Schema.define(version: 2020_08_13_165108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_08_12_174322) do
     t.bigint "type_id"
     t.string "type_location"
     t.datetime "end_at"
+    t.boolean "is_publish"
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["type_id"], name: "index_events_on_type_id"
