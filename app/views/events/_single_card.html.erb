@@ -1,0 +1,16 @@
+<div class="card">
+      <%= link_to event_path(:id => event.id) do %>
+              <img class="card-img-top" 
+                  src="https://source.unsplash.com/random?<%= index %>" 
+                  alt="Bologna">
+      <% end %>
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2" style="color: #EF5537 "><%= get_time_verbose(event.start_date) %></h6>
+        <h4 class="card-title mb-4"><%= truncate(event.title, :length => 50) %></h4>
+        <div class="row">
+          <div class="col">
+          <a href="#" class="tag"><%= event.category.title %></a>
+          </div>
+        </div>
+      </div>
+</div>

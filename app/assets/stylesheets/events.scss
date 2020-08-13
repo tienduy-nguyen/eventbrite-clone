@@ -1,8 +1,52 @@
-// Date picker
-
-#datepicker {
-  width: 180px;
+.event-wrapper {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  z-index: 2;
+  background-color: #fbfbfb;
 }
-#datepicker > span:hover {
-  cursor: pointer;
+
+.bg-event {
+  background: {
+    image: asset_url('bg-event.jpeg');
+  }
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  min-height: 50vh;
+  width: 100%;
+  opacity: 0.2;
+  margin-top: -20px;
+}
+
+.event-wrapper {
+  position: relative;
+  margin-top: -40vh;
+}
+.event-intro {
+  .row {
+    flex-wrap: nowrap;
+  }
+}
+.event-intro-photo {
+  img {
+    max-width: 100%;
+    border-top-left-radius: 10px;
+  }
+}
+
+.event-intro-price {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin-left: 1rem;
+}
+.event-content-date {
+  span {
+    float: right;
+    margin-right: 1rem;
+  }
+}
+.event-content {
+  min-height: 70vh;
 }

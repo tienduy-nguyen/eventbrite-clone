@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @attendees = Event.attendees_by(params[:id])
+    @same_events = Event.all.sample(3)
   end
 
   # GET /events/new
@@ -19,6 +20,7 @@ class EventsController < ApplicationController
     @organizers = current_user.organizers
     @types  = Type.all
     @categories  = Category.all
+    
   end
 
   # POST /events/

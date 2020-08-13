@@ -2,41 +2,190 @@
 <html>
 
 <head>
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDznYe1hCQrqGlx4uh84nQ_kxLwamrDBfQ"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script>
   <% content_for :title, "Event" %>
 </head>
+
 <body>
-  <!-- MAIN BODY -->
-  <section>
-     <div class="container">
-        <div class='row'>
-            <div class='col-lg-12 mx-auto mt-4'>
-              <h2 class="mb-4 text-left">Title:<%=  @event.title %></h2>
-              <p>Date:<%= get_time_verbose(@event.start_date) %></p>
-              <p>Category:<%=  @event.category.title %></p>
-              <p>Duration: <%= @event.duration %></p>
-              <p>Price: <%= @event.price %></p>
-              <strong>Organizer: <%= @event.organizer.name %></p></strong><p>
-              <p>Location: <%= @event.location %></p>
-              <p class="mb-3">Description: <%= @event.description %></p>
-
-              <div>
-                  <h5>List of attendees: </h5>
-                  <% if @attendees.count < 1%>
-                    <span class="text-muted">This event has not attendees yet</span>
-                  <% else %>
-                    <ul>
-                      <% @attendees.each do |attendee|%>
-                        <li> <%= attendee.full_name %></li>
-                      <% end %>
-                    </ul>
-                  <% end%>
-                 
-              </div>
-
+  <div class="container-fluid">
+    <div class="bg-event d-none d-lg-block"></div>
+    <!-- MAIN BODY -->
+    <div class="container event-wrapper">
+      <!-- Start Event intro -->
+      <div class="event-intro">
+        <div class="row">
+          <div class="col-md-8 pl-0 mr-4">
+            <div class="event-intro-photo">
+              <img class="img-fluid" src="<%= @event.img_url || 'https://source.unsplash.com/random/1600x900'%>" alt="">
             </div>
+          </div>
+          <div class="col-md-4 mt-4" style="position: relative;">
+            <div class="event-intro-date mb-5" style="color: #F05638; font-weight: 600;">
+              <div style="font-size: 1.4rem;"><strong class="pb-1  mb-1"><%= get_month(@event.start_date) %></strong>
+              </div>
+              <span style="font-size: 1.2rem;"><%= get_date(@event.start_date )%></span>
+            </div>
+
+            <div class="event-intro-organizer d-flex mb-5" style="font-size: 1.2rem">
+              <div class="py-2 mr-2">
+                by
+                <a href="#">
+                  <strong> <%= @event.organizer.name %> </strong>
+                </a>
+              </div>
+              <button class="btn btn-outline-info">
+                Follow
+              </button>
+            </div>
+            <div class="event-intro-price text-success" style="font-size: 1.1rem">
+              <% if @event.price < 1 %>
+              FREE
+              <% else %>
+              € <%= @event.price %>
+              <% end %>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="col my-4 pl-0">
+        <div class="event-intro-title">
+          <h3><%= @event.title %></h3>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <a href="#">
+          <i class="far fa-heart fa-2x"></i>
+        </a>
+        <div class="col-4">
+          <a href="#" class="btn btn-success btn-block">
+            Ticket
+          </a>
+        </div>
+      </div>
+      <hr>
+      </section>
+      <!-- End Event intro -->
+
+      <!-- Start Event content -->
+      <div class="event-content mt-4 mb-5">
+        <div class="row">
+          <div class="col-md-8 text-justify">
+            <h5 class="mb-3">Description: </h5>
+            <%= @event.description%>
+          </div>
+          <div class="col-md-4">
+            <h5>Date And Time</h5>
+            <div class="event-content-date mb-5">
+              <div class="mb-2">
+                Start date: <span class="text-info"><%= get_date_verbose(@event.start_date)%></span><br>
+                At: <span class="text-info"><%= get_only_time(@event.start_date)%></span>
+              </div>
+              <div>
+                End date: <span class="text-info"><%= get_date_verbose(@event.end_date)%></span><br>
+                At: <span class="text-info"><%= get_only_time(@event.end_at)%></span>
+              </div>
+            </div>
+
+            <div class="event-content-location mb-5">
+              <h5>Location</h5>
+              <span>
+                <% if @event.type_location == 'Avenue'%>
+                <%= @event.location %>
+                <% else %>
+                <%= @event.type_location %>
+                <% end %>
+              </span>
+            </div>
+
+            <div class="event-content-refund">
+              <h5>Refund Policy</h5>
+              <span>No Refunds</span>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="event-tags mb-5">
+        Tags
+      </div>
+
+
+      <hr>
+
+      <% if !@event.type_location.nil? %>
+      <div class="event-google-map mb-5">
+        <div style='width: 100%;'>
+          <div id="map" style='width: 100%; min-height: 50vh;'></div>
+        </div>
+      </div>
+      <% end %>
+      <hr>
+
+
+
+      <div class="event-organizer">
+        <h5 class="text-left">Organizer: </h5>
+        <div class="col mb-5">
+          <img class="img-thumbnail rounded mx-auto d-block"
+            src="<%= @event.organizer.user.avatar || 'https://source.unsplash.com/random?avatar'%>"><br>
+          <div class="mb-3 text-center">
+            <a class="h6" href="#">
+              <%= @event.organizer.name %>
+            </a>
+          </div>
+          <div class="mb-3 text-center">
+            <%= @event.organizer.bio %>
+          </div>
+          <div class="mb-3 text-justify">
+            <%= @event.organizer.description %>
+          </div>
+        </div>
+         <div class="d-flex mb-5">
+            <div class="mx-auto">
+              <a class="btn btn-outline-primary mr-3" href="#">
+                  Follow
+              </a>
+                <a class="btn btn-outline-dark" href="#">
+                  Contact
+              </a>
+            </div>
+          </div>
+      </div>
+      <hr class="mb-5">
+
+      <div class="event-you-may-like">
+          <h5 class="text-center">Other events you may like</h5>
+          <div class="row">
+          <% @same_events.each_with_index do |event, index| %>
+              <div class="col-md-4">
+                   <%= render partial: 'single_card', locals: {event: event, index: index} %>
+              </div>
+          <% end %>
+              
+          </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+  <script>
+    var map = new GMaps({
+      el: '#map',
+      lat: 48.866667,
+      lng: 2.333333
+    });
+
+    map.addMarker({
+      lat: 48.866667,
+      lng: 2.333333,
+      title: 'Paris'
+    });
+
+    map.setZoom(8);
+  </script>
 </body>
 
 </html>
