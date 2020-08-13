@@ -6,15 +6,15 @@
 <div class="form-group mb-3">
   <%= f.label :title %>
   <%= f.text_field :title, autofocus: true, autocomplete: "title",
-              class: 'form-control', require: true
+              class: 'form-control text-success', require: true
       %>
 </div>
 
 <div class="form-group mb-4">
   <%= f.label :organizer_id %>
   <div>
-    <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}),
-              {}, class: "form-control"
+    <%= f.select :organizer_id, options_for_select(@organizers.collect{|o| [o.name, o.id]}, params[:organizer_id]),
+              {}, class: "form-control text-success"
       %>
 
   </div>
@@ -31,7 +31,7 @@
     <%= f.label :type_id %>
     <div class="">
       <%= f.select :type_id, options_for_select(@types.collect{|o| [o.title, o.id]}),
-                  {}, class: "form-control"
+                  {}, class: "form-control text-success"
           %>
     </div>
   </div>
@@ -39,7 +39,7 @@
     <%= f.label :category_id %>
     <div>
       <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
-                  {}, class: "form-control"
+                  {}, class: "form-control text-success"
           %>
     </div>
   </div>
@@ -48,7 +48,7 @@
 <div class="form-group mb-5">
   <%= f.label :tags %><br>
   <small>Improve discoverability of your event by adding tags relevant to the subject matter.</small>
-  <input class="form-control mt-2">
+  <input class="form-control text-success mt-2">
   <div>
     <small>0/10 tags</small>
   </div>
@@ -60,11 +60,11 @@
   <h3>Type Location</h3>
   <span>Help people in the area discover your event and let attendees know where to show up.</span>
   <%= f.select :type_location, options_for_select(["Avenue", "Online event", "To be announced"]), {}, 
-              class: 'form-control mt-2 mb-3'
+              class: 'form-control text-success mt-2 mb-3'
       %>
 
   <%= f.label :location %>
-  <%= f.text_field :location, class: 'form-control'%>
+  <%= f.text_field :location, class: 'form-control text-success'%>
 </div>
 <hr>
 
@@ -76,13 +76,13 @@
 <div class="form-row mb-5">
   <div class="col">
     <%= f.label :start_date %>
-    <%= f.text_field :start_date, placeholder: "Date begin", class: "form-control datepicker" %>
+    <%= f.text_field :start_date, placeholder: "Date begin", class: "form-control text-success datepicker" %>
   </div>
   <div class="col">
     <%= f.label :start_at %>
     <div>
       <%= f.select :category_id, options_for_select(@categories.collect{|o| [o.title, o.id]}),
-                      {}, class: "form-control"
+                      {}, class: "form-control text-success"
               %>
     </div>
   </div>
@@ -95,7 +95,7 @@
   <span>This is the first image attendees will see at the top of your listing. Use a high quality image: 2160x1080px
     (2:1 ratio)</span>
   <section class="drag-drop-phot">
-    <form action="" method="POST" enctype="multipart/form-data">
+    <%# <form action="" method="POST" enctype="multipart/form-data"> %>
 
       <div class="form-group">
         <div class="preview-zone hidden">
@@ -121,21 +121,25 @@
       </div>
 
       <button type="submit" class="btn btn-primary ml-0">Upload</button>
-    </form>
+    <%# </form> %>
   </section>
 
 </div>
 <hr>
 
-<div class="form-group mb-5">
+<div class="form-group mb-3">
   <h3>Description</h3>
   <span>Add more details to your event like your schedule, sponsors, or featured guests.</span>
-  <textarea type="text-area" class="form-control" rows="10"></textarea>
+  <% f.text_area :description, class: "form-control text-success" ,rows: "10" %>
+</div>
+<div class="form-check mb-5">
+  <input type="checkbox" class="form-check-input" id="ispublish">
+  <label class="form-check-label" for ="ispublish">
 </div>
 
 
 <div class="actions mb-5">
-  <%= f.submit "Update" , class:"btn btn-danger"%>
+  <%= f.submit "Save" , class:"btn btn-danger"%>
   <%= link_to 'Back', :back , class: 'btn btn-dark ml-auto' %>
 </div>
 <% end %>

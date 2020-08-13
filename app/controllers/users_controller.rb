@@ -1,20 +1,22 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:secret]
   
-  def contact_info
-    
+  # GET /accountsettings/profile
+  def info
+    @user = current_user 
   end
 
   def credit_card
 
   end
 
-  def user_secret
+  def secret
 
   end
 
 
-  def update_profile
+  # PATCH /accountsettings/profile
+  def profile
     puts "----------------------------------"
     puts 'update'
     @user = current_user
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = "Update user profile succesfully!"
-      redirect_to :back
+      redirect_back(fallback_location: root_path)
     else
       @user.errors.full_messages.each do |message|
         flash[:error] = message

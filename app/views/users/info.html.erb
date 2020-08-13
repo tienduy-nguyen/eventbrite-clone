@@ -27,20 +27,20 @@
 
           <div class="account-email mb-5">
             <h3 class="mb-3">Account email address</h3>
-            <span ><%= current_user.email %></span>
+            <span class="text-success"><%= current_user.email %></span>
             <div>
-              <a href="<%= accountsettings_usersecret_path %>"
+              <a href="<%= accountsettings_secret_path %>"
               class="btn btn-light border-info mt-2">Change</a>
             </div>
           </div>
 
           <!-- Start form -->
-          <%= form_with(scope: :user, url: accountsettings_accountsettings_path, method: :patch, local:true) do |f| %>
+          <%= form_for @user, :as => :user,  :url => accountsettings_info_path do |f| %>
             <!-- Account photo -->
             <div class="account-photo mb-5">
               <h3>Profile Photo</h3>
               <section class="drag-drop-phot">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <%# <form action="" method="POST" enctype="multipart/form-data"> %>
                   <div class="">
                     <div class="row">
                       <div class="col-md-12">
@@ -74,12 +74,12 @@
 
                     <div class="row">
                       <div class="col-md-12">
-                        <button type="submit" 
+                        <button type="button" 
                         class="btn btn-primary pull-right">Upload</button>
                       </div>
                     </div>
                   </div>
-                </form>
+                <%# </form> %>
               </section>
             </div>
             <!-- End Account photo -->
@@ -93,49 +93,49 @@
                   <div class="form-group mb-3 ml-0">
                     <%= f.label "Prefix" %>
                     <div class="">
-                        <%= f.select :sex , options_for_select(["Mr.","Ms","Mrs.","Other"]), :class => 'form-control' %>
+                        <%= f.select :sex , options_for_select(["Mr.","Ms","Mrs.","Other"]), {}, :class => 'form-control text-success' %>
                     </div>
                   </div>
 
                   <div class="form-row mb-3 ml-0">
                     <div class="col">
                       <%= f.label :first_name %>
-                      <%= f.text_field :first_name, class: "form-control", value: current_user.first_name %>
+                      <%= f.text_field :first_name, class: "form-control text-success" %>
                     </div>
                     <div class="col">
                       <%= f.label :last_name %>
-                      <%= f.text_field :last_name, class: "form-control", value: current_user.last_name %>
+                      <%= f.text_field :last_name, class: "form-control text-success" %>
                     </div>
                   </div>
 
                   <div class="form-group mb-3">
                     <%= f.label :phone %>
-                    <%= f.text_field :phone, class: "form-control", value: current_user.phone %>
+                    <%= f.text_field :phone, class: "form-control text-success" %>
                   </div>
 
                   <div class="form-row mb-3 ml-0">
                     <div class="col">
                       <%= f.label :job %>
-                      <%= f.text_field :job, class: "form-control", value: current_user.job %>
+                      <%= f.text_field :job, class: "form-control text-success" %>
                     </div>
                     <div class="col">
                       <%= f.label :company %>
-                      <%= f.text_field :company, class: "form-control", value: current_user.company %>
+                      <%= f.text_field :company, class: "form-control text-success" %>
                     </div>
                   </div>
 
 
                   <div class="form-group mb-3">
                     <%= f.label :website %>
-                    <%= f.text_field :website, class: "form-control", value: current_user.website %>
+                    <%= f.text_field :website, class: "form-control text-success"%>
                   </div>
 
                   <div class="form-group mb-3">
                     <%= f.label :description %>
                     <%= f.text_area :description, 
                         class: 'form-control text-success', 
-                        rows: '10', placeholder: 'Description',
-                        value: current_user.description %>
+                        rows: '10', placeholder: 'Description'
+                         %>
                   </div>
 
                 </div>
@@ -150,24 +150,23 @@
                       <h3 cl>Address</h3>
                       <div class="form-group mb-3">
                         <%= f.label :address %>
-                        <%= f.text_field :address, class: "form-control", value: current_user.address %>
+                        <%= f.text_field :address, class: "form-control text-success" %>
                       </div>
                       <div class="form-group mb-3">
                         <label for="">City</label>
-                        <input type="text" class= "form-control">
+                        <input type="text" class= "form-control text-success">
                       </div>
                       <div class="form-group mb-3 ml-0">
                         <label for="">Country</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control text-success">
                       </div>
                       <div class="form-row mb-4 ml-0">
                         <div class="col">
                           <label for="">Zip/Postal Code</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control text-success">
                         </div>
                         <div class="col">
                           <label for="">State</label>
-                          <input type="text" class="form-control">
                         </div>
                       </div>
                   </div>

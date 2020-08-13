@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   
 
   # Account settings
-  get 'accountsettings/accountsettings', to: 'users#contact_info'
-  patch 'accountsettings/accountsettings', to: 'users#update_profile'
+  get 'accountsettings/info', to: 'users#info'
+  patch 'accountsettings/info', to: 'users#profile'
   get 'accountsettings/creditcard', to: 'users#credit_card'
-  get 'accountsettings/usersecret', to: 'users#user_secret'
+  get 'accountsettings/secret', to: 'users#secret'
 end
