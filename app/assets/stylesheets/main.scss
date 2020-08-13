@@ -1,0 +1,23 @@
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+}
+#alert-section {
+  position: relative;
+  display: block;
+  width: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 1px;
+  margin-left: 0;
+  margin-right: 0;
+}
