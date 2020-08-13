@@ -11,8 +11,9 @@ class Event < ApplicationRecord
 
   validates :title, presence: true, length: {in: 5..140}
   validates :start_date, presence: true
-  validates :start_at, presence: true
-  validates :end_at, presence: true
+  validates :end_date, presence: true
+  # validates :start_at, presence: true
+  # validates :end_at, presence: true
   
   validates :description, presence: true, length: {in: 20..1000}
   validates :price, presence: true, format: { with: /\A\d+\z/, message: "please enter a valid number" }
@@ -59,13 +60,15 @@ class Event < ApplicationRecord
   end
 
   def start_date_must_be_start_from_today
-    if self.start_date.to_date < Time.now.to_date 
+    if  !self.start_date.nil? && self.start_date.to_date < Time.now.to_date 
       return errors.add(:start_date, "Start date must be from today!")
     end
   end
   def start_date_must_be_before_end_date
-    valid = self.start_date && self.end_date && self.start_date < self.end_date
-    errors.add(:start_date, "Must before end date") unless valid
+    if !self.start_date.nil? && !self.end_date.nil?
+      valid = self.start_date && self.end_date && self.start_date < self.end_date
+      errors.add(:start_date, "Must before end date") unless valid
+    end
   end
   def past_date_not_changed
     if start_date_changed? && self.persisted?
@@ -74,15 +77,11 @@ class Event < ApplicationRecord
   end
 
   def auto_end_date
-    if self.end_date.nil?
+    if self.end_date.nil? && !self.start_date.nil?
       self.end_date = self.start_date
     end
   end
-  def auto_end_time
-    if self.end_at.nil?
-      self.end_at = self.start_at + 3
-    end
-  end
+
 
   # Round durantion 5 minutes
   def normalize_duration
