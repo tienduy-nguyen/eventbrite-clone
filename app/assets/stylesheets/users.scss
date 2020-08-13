@@ -103,12 +103,33 @@
   color: #eb4d4b;
   margin-left: -5px;
 }
-.sidebar-expand .sidebar {
-  width: 250px;
+
+@media all and (min-width: 768px) and (max-width: 1199px) {
+  .account-settings-section {
+    margin-left: 80px;
+  }
 }
 
-.sidebar-expand .account-settings-section {
-  margin-left: 250px;
+@media all and (max-width: 1199px) {
+  .sidebar-expand .sidebar {
+    width: 250px;
+  }
+
+  .sidebar-expand .account-settings-section {
+    margin-left: 250px;
+  }
+  .account-settings-section {
+    margin-left: 80px;
+    transition: margin-left 0.5s;
+  }
+}
+@media all and (min-width: 1200px) {
+  .sidebar {
+    width: 250px;
+  }
+  .account-settings-section {
+    margin-left: 40px;
+  }
 }
 
 /* End sidebar */
@@ -159,12 +180,6 @@
   text-align: center;
   img {
     max-width: 100%;
-  }
-}
-
-@media all and (max-width: 1024px) {
-  .account-settings-section {
-    margin-left: 85px;
   }
 }
 

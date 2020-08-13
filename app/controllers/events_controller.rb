@@ -98,7 +98,8 @@ class EventsController < ApplicationController
     :type_id,
     :description,
     :organizer_id,
-    :type_location
+    :type_location,
+    :max_quantity
     )
   end
 end
