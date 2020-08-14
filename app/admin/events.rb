@@ -1,13 +1,32 @@
 ActiveAdmin.register Event do
 
-  permit_params :title, :start_date, :end_date, :start_at, :end_at, :price, :organizer_id, :category_id, :type_location, :is_publish, :max_quantity, :validated
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:title, :start_date, :end_date, :start_at, :end_at, :price, :location, :organizer_id, :category_id, :type_location, :is_publish, :max_quantity, :validated]
-  #   # permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   # permitted
-  # end
+  permit_params :title, :start_date, :end_date, :price, :organizer_id, :category_id, :type_location, :is_publish, :validated
   
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :start_date
+    column :end_date
+    column :price
+    column :organizer_id
+    column :category_id
+    column :is_publish
+    column :validated
+    actions
+  end
+
+  form do |f|
+    f.inputs "Event Details" do
+      f.input :title
+      f.input :start_date
+      f.input :end_date
+      f.input :price
+      f.input :is_publish
+      f.input :validated
+      # more fields
+    end
+    f.actions
+  end
+
 end
