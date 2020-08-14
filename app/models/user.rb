@@ -72,7 +72,7 @@ class User < ApplicationRecord
 
 
   def set_default_role
-    self.is_admin? = false
+    self.is_admin = false
   end
 
   

@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_172537) do
+ActiveRecord::Schema.define(version: 2020_08_14_172931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
 
   create_table "attendances", force: :cascade do |t|
     t.string "stripe_customer_id"
@@ -47,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_172537) do
     t.datetime "end_date"
     t.integer "duration"
     t.datetime "start_at"
+    t.datetime "end_at"
     t.text "description"
     t.integer "price"
     t.string "location"
@@ -59,9 +74,9 @@ ActiveRecord::Schema.define(version: 2020_08_13_172537) do
     t.datetime "updated_at", null: false
     t.bigint "type_id"
     t.string "type_location"
-    t.datetime "end_at"
     t.boolean "is_publish"
     t.string "max_quantity"
+    t.boolean "validated"
     t.index ["category_id"], name: "index_events_on_category_id"
     t.index ["organizer_id"], name: "index_events_on_organizer_id"
     t.index ["type_id"], name: "index_events_on_type_id"
@@ -112,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_172537) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.boolean "is_admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

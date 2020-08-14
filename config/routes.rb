@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  # Admin page
-  namespace :admin, only: [:index] do
-    resources :users
-    resources :events
-    root 'admin#index'
-  end
-  
+
   # Static Page
   root to: 'static_pages#index'
   get 'static_pages/help'
@@ -14,6 +8,9 @@ Rails.application.routes.draw do
 
 
   # Devise for user
+  devise_for :admin_users, {class_name: 'User'}.merge(ActiveAdmin::Devise.config)
+  ActiveAdmin.routes(self)
+
   devise_for :users
   # Change the default of route for login, signup
   devise_scope :user do
@@ -32,7 +29,7 @@ Rails.application.routes.draw do
   
 
   resources :events do
-    resources :attendances, only[:index, :new, :create]
+    resources :attendances, only: [:index, :new, :create]
   end
  
 end
