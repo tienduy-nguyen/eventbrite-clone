@@ -17,7 +17,6 @@ class Event < ApplicationRecord
   
   # validates :description, presence: true, length: {in: 20..1000}
   validates :price, presence: true, format: { with: /\A\d+\z/, message: "please enter a valid number" }
-  # validates :location, presence: true
   validates :category_id, presence: true
 
   validate  :picture_size
@@ -30,6 +29,10 @@ class Event < ApplicationRecord
 
   ##----------------------
   # Public method
+  def is_free?
+    return self.price < 1
+  end
+
 
   # Serch attendees by event id
   def self.attendees_by(eventid)

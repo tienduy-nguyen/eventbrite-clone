@@ -33,7 +33,7 @@ module ApplicationHelper
   def get_month(time)
     return time.strftime("%B").upcase
   end
-  def get_date(time)
+  def get_day(time)
     return time.strftime("%d")
   end
 

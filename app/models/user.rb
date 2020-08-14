@@ -21,6 +21,7 @@ class User < ApplicationRecord
   before_save :normalize_name
   before_save :downcase_email
   before_save :get_full_name
+  after_initialize :set_default_role, if: :new_record?
 
   # Send email
   after_create :create_default_organizer
@@ -67,6 +68,11 @@ class User < ApplicationRecord
 
   def blank_password?
     self.password = nil if self.password.blank?
+  end
+
+
+  def set_default_role
+    self.is_admin? = false
   end
 
   

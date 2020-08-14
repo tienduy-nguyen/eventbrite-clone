@@ -24,7 +24,7 @@
             <div class="event-intro-date mb-5" style="color: #F05638; font-weight: 600;">
               <div style="font-size: 1.4rem;"><strong class="pb-1  mb-1"><%= get_month(@event.start_date) %></strong>
               </div>
-              <span style="font-size: 1.2rem;"><%= get_date(@event.start_date )%></span>
+              <span style="font-size: 1.2rem;"><%= get_day(@event.start_date )%></span>
             </div>
 
             <div class="event-intro-organizer d-flex mb-5" style="font-size: 1.2rem">
@@ -79,11 +79,11 @@
             <h5>Date And Time</h5>
             <div class="event-content-date mb-5">
               <div class="mb-2">
-                Start date: <span class="text-info"><%= get_date_verbose(@event.start_date)%></span><br>
+                Start date: <span class="text-info"><%= get_day_verbose(@event.start_date)%></span><br>
                 At: <span class="text-info"><%= get_only_time(@event.start_date)%></span>
               </div>
               <div>
-                End date: <span class="text-info"><%= get_date_verbose(@event.end_date)%></span><br>
+                End date: <span class="text-info"><%= get_day_verbose(@event.end_date)%></span><br>
                 At: <span class="text-info"><%= get_only_time(@event.end_at)%></span>
               </div>
             </div>
