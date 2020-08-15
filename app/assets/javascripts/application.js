@@ -1,4 +1,6 @@
 //= require 'datepicker'
+//= require 'active_admin'
+//= require 'pagination'
 
 //----------------------------------------------//
 // Dropdown menu
