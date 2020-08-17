@@ -166,6 +166,7 @@
 .browse-categories {
   margin-top: 200px;
   .cat {
+    position: relative;
     font-size: 2.4rem;
     color: #fff;
     min-height: 25vh;
@@ -178,9 +179,18 @@
       transform: scale(1.01);
       opacity: 0.8;
     }
-    align-items: center;
-    justify-items: center;
+    vertical-align: middle;
+    text-align: center;
     margin-right: 0.6rem;
+    .cat-inner {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 30px;
+    }
   }
   .cat-1 {
     background: {
