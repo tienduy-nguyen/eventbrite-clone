@@ -32,6 +32,9 @@ class Event < ApplicationRecord
   def is_free?
     return self.price < 1
   end
+  def is_online?
+    return self.type_location.downcase == 'online event'
+  end
 
 
   # Serch attendees by event id

@@ -2,8 +2,8 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:secret]
   
   def index
-    events = Event.where('start_date >= ? AND is_publish = ?', Time.zone.now, true).order(start_date: :asc)
-    @all_events = !events.nil? && events.count > 30 ? events.take(30) :  events
+    events = Event.where('start_date >= ? AND is_publish = ? AND validated = ?', Time.zone.now, true, true).order(start_date: :asc)
+    @all_events = events.paginate(page: params[:page], per_page: 20)
     @today_events = events.where(start_date: Time.zone.now..Time.zone.now.end_of_day)
     weekend_start = Date.today.end_of_week - 1
     weekend_end   = Date.today.end_of_week

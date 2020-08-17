@@ -62,18 +62,48 @@
   margin-top: 150px;
   min-height: 50vh;
 }
+.card {
+  transition: 0.2s ease;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 5x 8x 15px rgba(0, 0, 0, 0.1);
+  }
+}
+.card-top {
+  position: relative;
+  .card-money {
+    background: #f1f1f1;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 2px 4px;
+    border-radius: 2px;
+  }
+  .card-online {
+    background: #ffdc23;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: red;
+  }
+}
 
 .card-img-top {
   width: 100%;
-  height: 15vw;
+  height: 200px;
   object-fit: cover;
 }
 .card-body {
   width: 100%;
-  min-height: 220px;
+  height: 200px;
   object-fit: cover;
 }
-
+.card-title {
+  height: 50px;
+  overflow: hidden;
+}
 .tags {
   list-style: none;
   margin: 0;
@@ -97,6 +127,8 @@
   margin: 0 10px 10px 0;
   text-decoration: none;
   -webkit-transition: color 0.2s;
+  overflow: hidden;
+  margin-top: 1rem;
 }
 
 .tag::before {
@@ -129,4 +161,60 @@
 
 .tag:hover::after {
   border-left-color: crimson;
+}
+
+.browse-categories {
+  margin-top: 200px;
+  .cat {
+    font-size: 2.4rem;
+    color: #fff;
+    min-height: 25vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    transition: 0.2s ease;
+    border-radius: 10px;
+    &:hover {
+      transform: scale(1.01);
+      opacity: 0.8;
+    }
+    align-items: center;
+    justify-items: center;
+    margin-right: 0.6rem;
+  }
+  .cat-1 {
+    background: {
+      image: asset_url('category/online.jpeg');
+    }
+  }
+  .cat-2 {
+    background: {
+      image: asset_url('category/food.jpeg');
+    }
+  }
+  .cat-3 {
+    background: {
+      image: asset_url('category/class.jpeg');
+    }
+  }
+  .cat-4 {
+    background: {
+      image: asset_url('category/business.jpeg');
+    }
+  }
+  .cat-5 {
+    background: {
+      image: asset_url('category/party.jpeg');
+    }
+  }
+  .cat-6 {
+    background: {
+      image: asset_url('category/sport.jpeg');
+    }
+  }
+  .cat-7 {
+    background: {
+      image: asset_url('category/music.jpeg');
+    }
+  }
 }

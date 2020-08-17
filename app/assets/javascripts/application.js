@@ -1,6 +1,10 @@
+//= require jquery3
+// require popper
+// require bootstrap
+// require jquery_ujs
+//= require pagination
 //= require 'datepicker'
 //= require 'active_admin'
-//= require 'pagination'
 
 //----------------------------------------------//
 // Dropdown menu

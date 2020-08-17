@@ -1,0 +1,7 @@
+$('#all_events').append('<%= j render @all_events %>');
+<% if @all_events.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @all_events %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

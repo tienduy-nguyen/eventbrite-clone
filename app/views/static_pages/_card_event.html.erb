@@ -5,20 +5,40 @@
         <div class="col-xl-3 col-lg-4 col-md-12 my-3">
             <div class="card">
                 <%= link_to event_path(:id => event.id) do %>
+                      <div class="card-top">
                        <img class="card-img-top" 
                             src="https://source.unsplash.com/random?<%= index%>" 
                             alt="Bologna">
+                        <div class="card-money">
+                            <% if event.is_free? %>
+                                 FREE
+                            <% else %>
+                                 € <%= event.price %>
+                            <% end %>
+                        </div>
+                        <div class="card-online">
+                            <% if event.is_online? %>
+                            <span>ONLINE</span>
+                            <% end %>
+                        </div>
+                      </div>
                 <% end %>
                 <div class="card-body">
                   <h6 class="card-subtitle mb-2" style="color: #EF5537 "><%= get_time_verbose(event.start_date) %></h6>
-                  <h4 class="card-title mb-4"><%= truncate(event.title, :length => 50) %></h4>
+                  <h5 class="card-title mb-4"><%= truncate(event.title, :length => 40) %></h5>
+
+                  <% if !event.is_online? %>
+                   <a href="#" class="d-none d-lg-block card-text"><%= get_city_from_address(event.location) %></a>
+                 <% else %>
+                     <a href="#" class="d-none d-lg-block card-text">Online Event</a>
+                 <% end %>
+                  
                   <div class="row">
                     <div class="col">
                     <a href="#" class="tag"><%= event.category.title %></a>
-
                     </div>
                     <div class="col">
-                    <a href="#" class="d-none d-lg-block" style="float:right;" >Location: <%= get_city_from_address(event.location) %></a>
+                   
                     </div>
                   </div>
                 </div>

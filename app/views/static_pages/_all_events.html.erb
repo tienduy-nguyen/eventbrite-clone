@@ -8,5 +8,10 @@
   <% else %>
   <%= render partial: 'card_event', locals: {events: @all_events} %>
  <% end %>
+
+ <div id="infinite-scrolling">
+    <%= will_paginate @all_events, renderer:  WillPaginate::ActionView::Bootstrap4LinkRenderer %>
+</div>
  
  </div>
+
