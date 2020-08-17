@@ -24,7 +24,7 @@ module ApplicationHelper
   def get_time_verbose(time_utc)
     return time_utc.strftime("%B %d, %Y")
   end
-  def get_date_verbose(time_utc)
+  def get_day_verbose(time_utc)
     return time_utc.strftime("%B %d, %Y")
   end
   def get_only_time(time_utc)
