@@ -16,6 +16,15 @@ ActiveAdmin.register Event do
     actions
   end
 
+  filter :start_date
+  filter :end_date
+  filter :price
+  filter :organizer_id
+  filter :category_id
+  filter :is_publish
+  filter :validated
+
+
   form do |f|
     f.inputs "Event Details" do
       f.input :title
