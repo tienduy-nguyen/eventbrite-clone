@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   resources :events do
     resources :attendances, only: [:index, :new, :create]
   end
+
+  resources :charges
  
 end

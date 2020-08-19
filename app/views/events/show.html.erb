@@ -60,7 +60,12 @@
         </a>
         <div class="col-4">
           <a href="#" class="btn btn-success btn-block">
-            Ticket
+          <% if @event.is_free? %>
+              Ticket
+          <% else %>
+              Register
+          <% end %>
+            
           </a>
         </div>
       </div>
