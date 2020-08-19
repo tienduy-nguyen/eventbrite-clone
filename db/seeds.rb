@@ -47,6 +47,14 @@ Type.create(title: "Other")
 
 puts "Create types"
 
+User.create(
+  first_name: "Admin",
+  last_name: "1",
+  email: "admin@admin.com",
+  password: "admin1234567",
+  password_confirmation: "admin1234567",
+  is_admin: true
+)
 
 
 100.times do
@@ -71,21 +79,43 @@ User.all.each do |user|
 end
 puts "Create Organizer"
 
-50.times do
+100.times do
   Event.create(
     organizer: Organizer.all.sample,
     title: Faker::Quote.matz[0..120],
-    start_date: Faker::Date.forward(days: rand(2..50)),
+    start_date: Faker::Date.forward(days: rand(50..100)),
     start_at: Time.now,
     end_at: Time.now + 1*60*60,
     price: rand(0..500),
+    type: Type.all.sample,
     type_location: "Online Event",
     location: Faker::Address.full_address,
     category: Category.all.sample,
-    description: Faker::Lorem.sentence(word_count: rand(20..100)) #=> "Quaerat quam unde."
+    description: Faker::Lorem.sentence(word_count: rand(20..100)),
+    is_publish: true,
+    validated: true
   )
 end
 puts "Create Events"
+
+# Update event
+# Event.all.each do |event|
+#   event.update(
+#     organizer: Organizer.all.sample,
+#     title: Faker::Quote.matz[0..120],
+#     start_date: Faker::Date.forward(days: rand(2..50)),
+#     start_at: Time.now,
+#     end_at: Time.now + 1*60*60,
+#     price: rand(0..500),
+#     type: Type.all.sample,
+#     type_location: "Online Event",
+#     location: Faker::Address.full_address,
+#     category: Category.all.sample,
+#     description: Faker::Lorem.sentence(word_count: rand(20..100)),
+#     is_publish: true,
+#     validated: true
+#   )
+# end
 
 
 50.times do
